@@ -1,0 +1,7 @@
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\bin\Debug\SqlMagic.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\bin\Debug\SqlMagic.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\obj\Debug\SqlMagic.csprojResolveAssemblyReference.cache
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\obj\Debug\SqlMagic.Resources.Sql.resources
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\obj\Debug\SqlMagic.csproj.GenerateResource.Cache
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\obj\Debug\SqlMagic.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic\obj\Debug\SqlMagic.pdb

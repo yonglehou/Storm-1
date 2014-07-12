@@ -1,0 +1,7 @@
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\bin\Debug\SqlMagic.Output.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\bin\Debug\SqlMagic.Output.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\obj\Debug\SqlMagic.Output.csprojResolveAssemblyReference.cache
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\obj\Debug\SqlMagic.Output.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\obj\Debug\SqlMagic.Output.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\bin\Debug\SqlMagic.Lib.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Output\bin\Debug\SqlMagic.Lib.pdb

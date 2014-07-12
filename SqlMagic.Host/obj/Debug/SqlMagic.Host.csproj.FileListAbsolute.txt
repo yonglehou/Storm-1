@@ -1,0 +1,13 @@
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Host.exe
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Host.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\obj\Debug\SqlMagic.Host.csprojResolveAssemblyReference.cache
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\obj\Debug\SqlMagic.Host.exe
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\obj\Debug\SqlMagic.Host.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Output.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Lib.dll
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Output.pdb
+C:\Users\Marco vd Oever\Documents\Visual Studio 2012\Projects\SqlMagic\SqlMagic.Host\bin\Debug\SqlMagic.Lib.pdb
+C:\Workspace\InfoSupport\SqlMagic\SqlMagic.Host\obj\Debug\SqlMagic.Host.exe
+C:\Workspace\InfoSupport\SqlMagic\SqlMagic.Host\obj\Debug\SqlMagic.Host.pdb
