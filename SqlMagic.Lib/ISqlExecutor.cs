@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SqlMagic.Lib
+namespace Flyingpie.Storm.Lib
 {
     public interface ISqlExecutor
     {
-        SqlResponse<T> Execute<T>(SqlRequest request);
+        SqlResponse Execute(SqlRequest request);
     }
 }

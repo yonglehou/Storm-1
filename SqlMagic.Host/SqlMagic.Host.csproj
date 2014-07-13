@@ -7,7 +7,7 @@
     <ProjectGuid>{C2479309-25CF-438E-93DF-421B8D87A4E2}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SqlMagic.Host</RootNamespace>
+    <RootNamespace>Flyingpie.Storm.Host</RootNamespace>
     <AssemblyName>SqlMagic.Host</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -49,9 +49,9 @@
       <Project>{d263cb19-599c-4acb-a62d-c64fbe3af071}</Project>
       <Name>SqlMagic.Output</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SqlMagic\SqlMagic.csproj">
+    <ProjectReference Include="..\SqlMagic\Storm.csproj">
       <Project>{32cf1a29-5710-41f1-968d-a7eb22480e09}</Project>
-      <Name>SqlMagic</Name>
+      <Name>Storm</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

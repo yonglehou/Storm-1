@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Xml.Serialization;
 
-namespace SqlMagic.Model.Database
+namespace Flyingpie.Storm.Model
 {
     public class SchemaInfo
     {
         [MapTo("SchemaId")]
-        public int Id { get; private set; }
+        public int Id { get; set; }
 
         [MapTo("SchemaName")]
-        public string Name { get; private set; }
+        public string Name { get; set; }
 
-        public List<StoredProcedureInfo> StoredProcedures { get; private set; }
-        public List<UserDefinedTypeInfo> UserDefinedTypes { get; private set; }
+        public List<StoredProcedureInfo> StoredProcedures { get; set; }
+        public List<UserDefinedTypeInfo> UserDefinedTypes { get; set; }
 
-        public DatabaseModel Database { get; private set; }
+        [XmlIgnore]
+        public DatabaseModel Database { get; set; }
 
         internal void Initialize(DatabaseModel database)
         {

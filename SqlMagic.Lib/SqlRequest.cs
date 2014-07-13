@@ -5,15 +5,18 @@ using System.Data;
 using System.Linq;
 using System.Text;
 
-namespace SqlMagic.Lib
+namespace Flyingpie.Storm.Lib
 {
     public class SqlRequest
     {
+        public string SchemaName { get; set; }
         public string StoredProcedureName { get; set; }
         public List<StoredProcedureParameter> Parameters { get; set; }
 
-        public SqlRequest()
+        public SqlRequest(string schemaName, string storedProcedureName)
         {
+            SchemaName = schemaName;
+            StoredProcedureName = storedProcedureName;
             Parameters = new List<StoredProcedureParameter>();
         }
     }
@@ -25,11 +28,33 @@ namespace SqlMagic.Lib
 
     public class StoredProcedureSimpleParameter : StoredProcedureParameter
     {
+        public StoredProcedureSimpleParameter(string name, object value)
+        {
+            Name = name;
+            Value = value;
+        }
+
         public object Value { get; set; }
+
+        public override string ToString()
+        {
+            return Name + "(" + Value + ")";
+        }
     }
 
     public class StoredProcedureTableTypeParameter : StoredProcedureParameter
     {
-        public IList Table { get; set; }
+        public StoredProcedureTableTypeParameter(string name, IEnumerable table)
+        {
+            Name = name;
+            Table = table;
+        }
+
+        public IEnumerable Table { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }

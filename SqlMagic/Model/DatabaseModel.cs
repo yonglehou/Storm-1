@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
-namespace SqlMagic.Model.Database
+namespace Flyingpie.Storm.Model
 {
     public class DatabaseModel
     {
@@ -15,6 +15,10 @@ namespace SqlMagic.Model.Database
         public List<UserDefinedTypeColumnInfo> UserDefinedTypeColumns { get; private set; }
 
         private string _connectionString;
+
+        public DatabaseModel()
+        {
+        }
 
         public DatabaseModel(string connectionString)
         {
@@ -27,11 +31,11 @@ namespace SqlMagic.Model.Database
             {
                 connection.Open();
 
-                Schemas = connection.Query<SchemaInfo>(Resources.Sql.ListSchemas);
-                StoredProcedures = connection.Query<StoredProcedureInfo>(Resources.Sql.ListStoredProcedures);
-                UserDefinedTypes = connection.Query<UserDefinedTypeInfo>(Resources.Sql.ListUserDefinedTypes);
-                UserDefinedTypeColumns = connection.Query<UserDefinedTypeColumnInfo>(Resources.Sql.ListUserDefinedTypeColumns);
-                Parameters = connection.Query<ParameterInfo>(Resources.Sql.ListParameters);
+                Schemas = connection.Query<SchemaInfo>(Flyingpie.Storm.Resources.Sql.ListSchemas);
+                StoredProcedures = connection.Query<StoredProcedureInfo>(Flyingpie.Storm.Resources.Sql.ListStoredProcedures);
+                UserDefinedTypes = connection.Query<UserDefinedTypeInfo>(Flyingpie.Storm.Resources.Sql.ListUserDefinedTypes);
+                UserDefinedTypeColumns = connection.Query<UserDefinedTypeColumnInfo>(Flyingpie.Storm.Resources.Sql.ListUserDefinedTypeColumns);
+                Parameters = connection.Query<ParameterInfo>(Flyingpie.Storm.Resources.Sql.ListParameters);
 
                 Schemas.ToList().ForEach(s => s.Initialize(this));
             }

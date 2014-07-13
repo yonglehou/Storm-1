@@ -7,7 +7,7 @@
     <ProjectGuid>{D263CB19-599C-4ACB-A62D-C64FBE3AF071}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SqlMagic.Output</RootNamespace>
+    <RootNamespace>Flyingpie.Storm.Output</RootNamespace>
     <AssemblyName>SqlMagic.Output</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -46,10 +46,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SqlMagic.Lib\SqlMagic.Lib.csproj">
+    <ProjectReference Include="..\SqlMagic.Lib\Storm.Lib.csproj">
       <Project>{203fafe9-3485-4a9b-b72d-ae3b4d53f2fd}</Project>
-      <Name>SqlMagic.Lib</Name>
+      <Name>Storm.Lib</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Storm.Dapper\Storm.Dapper.csproj">
+      <Project>{90100d17-1cd4-4fae-9ed8-b2eee733c126}</Project>
+      <Name>Storm.Dapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.xslt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

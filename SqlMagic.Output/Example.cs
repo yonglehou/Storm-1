@@ -1,10 +1,11 @@
-﻿using SqlMagic.Lib;
+﻿using Flyingpie.Storm.Lib;
+using Storm.Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace SqlMagic.Output
+namespace Flyingpie.Storm.Output
 {
     public class Example
     {
@@ -15,7 +16,10 @@ namespace SqlMagic.Output
 
         public void Example1()
         {
-            //var afspraak = new Database.Afspraak();
+            var executor = new AdoSqlExecutor();
+            var analyse = new Database.Analyse(executor);
+            var result = analyse.csp_ZorgverstrekkerBudget_s01<SqlResponse>(1, 1, null, 409);
+
             //var analyse = new Database.Analyse();
             //analyse.csp_BehandelingZwarteLijst_u01(new Analyse.udtUpdateBehandelingZwarteLijst()
             //{
@@ -29,13 +33,14 @@ namespace SqlMagic.Output
             //    }
             //}, 1);
 
-            var executor = new AdoSqlExecutor();
-            var analyse = new Database.Analyse(executor);
-            var response = analyse.csp_BehandelingZwarteLijst_s01<BehandelingZwarteLijstItem>(new DateTime(2013, 1, 1), 409);
+            //var executor = new AdoSqlExecutor();
+            //var analyse = new Database.Analyse(executor);
+            //var response = analyse.csp_BehandelingZwarteLijst_s01<BehandelingZwarteLijstItem>(new DateTime(2013, 1, 1), 409);
         }
 
         public void ExampleSql()
         {
+            /*
             var sqlRequest = new SqlRequest()
             {
                 StoredProcedureName = "csp_x_s01",
@@ -48,6 +53,7 @@ namespace SqlMagic.Output
                     }
                 }
             };
+             */
         }
 
         public class BehandelingZwarteLijstItem

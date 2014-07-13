@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SqlMagic.Model.Database
+namespace Flyingpie.Storm.Model
 {
     class MapToAttribute : Attribute
     {

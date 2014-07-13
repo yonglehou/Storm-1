@@ -1,4 +1,4 @@
-﻿using SqlMagic.Model.Database;
+﻿using Flyingpie.Storm.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace SqlMagic
+namespace Flyingpie.Storm
 {
     public static class SqlUtil
     {

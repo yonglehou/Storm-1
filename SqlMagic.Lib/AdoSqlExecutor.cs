@@ -1,31 +1,38 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 
-namespace SqlMagic.Lib
+namespace Flyingpie.Storm.Lib
 {
     public class AdoSqlExecutor : ISqlExecutor
     {
-        public SqlResponse<T> Execute<T>(SqlRequest request)
+        public SqlResponse Execute(SqlRequest request)
         {
-            try
+            var response = new SqlResponse();
+
+            using (var connection = new SqlConnection("server=DBCS_PRD_SQLSRV;database=DBCServices5;integrated security=true;"))
+            using (var command = new SqlCommand(request.SchemaName + "." + request.StoredProcedureName, connection)
+            { CommandType = CommandType.StoredProcedure })
             {
+                foreach (var parameter in request.Parameters)
+                {
+                    var sp = (StoredProcedureSimpleParameter)parameter; //TODO: Whot?
+                    var p = command.Parameters.Add(new SqlParameter(sp.Name, sp.Value != null ? sp.Value : DBNull.Value) { Direction = ParameterDirection.Input });
+                }
 
-                string spName = "Analyse.csp_BehandelingZwarteLijst_s01";
-                IDbDataParameter[] parameters = DBModule.Data.GetStoredProcedureParameters(spName);
-                parameters.Single(p => p.ParameterName == "@ZorgverzekeraarId").Value = zorgverzekeraarId;
-                parameters.Single(p => p.ParameterName == "@Peildatum").Value = peildatum;
+                connection.Open();
+                var reader = command.ExecuteReader();
 
-                return DBModule.Data.ExecutePOCO<BehandelingZwarteLijst>(spName, parameters);
+                while (reader.Read())
+                {
+                    Console.WriteLine(reader.GetString(4));
+                }
             }
-            catch (SqlException sqlEx)
-            {
-                throw DataUtil.HandleSqlException(sqlEx);
-            }
 
-            return null;
+            return response;
         }
     }
 }
