@@ -34,7 +34,7 @@ namespace Flyingpie.Storm.Host
 
             // Generate database model
             Console.WriteLine("Generating model from database..");
-            var model = new DatabaseModel("Data Source=DBCS_DEV_SQLSRV;Initial catalog=DBCServices5;Integrated Security=true;");
+            var model = new DatabaseModel("Data Source=DBCS_PRD_SQLSRV;Initial catalog=DBCServices5;Integrated Security=true;");
             model.Initialize();
 
             // Generate code

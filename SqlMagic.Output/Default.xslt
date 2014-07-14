@@ -4,6 +4,7 @@
   <xsl:template match="/">
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Flyingpie.Storm.Lib;
 
 namespace Database
@@ -61,7 +62,7 @@ namespace Database
       <xsl:for-each select="Parameters/ParameterInfo">
       <xsl:choose>
       <xsl:when test="HasUserDefinedType = 'true'">
-      request.Parameters.Add(new StoredProcedureTableTypeParameter("<xsl:value-of select="Name"/>", <xsl:value-of select="NameClr"/>));
+      request.Parameters.Add(new StoredProcedureTableTypeParameter("<xsl:value-of select="Name"/>", "<xsl:value-of select="UserDefinedTypeSchema"/>", "<xsl:value-of select="UserDefinedTypeName"/>", <xsl:value-of select="NameClr"/>));
       </xsl:when>
       <xsl:when test="HasUserDefinedType = 'false'">
       request.Parameters.Add(new StoredProcedureSimpleParameter("<xsl:value-of select="Name"/>", <xsl:value-of select="NameClr"/>));
@@ -69,8 +70,18 @@ namespace Database
       </xsl:choose>
       </xsl:for-each>
       
-      return (T)_executor.Execute(request);
-    }
+      var result = _executor.Execute<xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(request);
+
+      <xsl:for-each select="Parameters/ParameterInfo">
+      <xsl:choose>
+      <xsl:when test="HasUserDefinedType = 'false'">
+      <xsl:value-of select="NameClr"/><xsl:text> = </xsl:text>(<xsl:value-of select="TypeClr"/><xsl:text disable-output-escaping="yes">)((StoredProcedureSimpleParameter)request.Parameters.Single(p =&gt; p.Name == "</xsl:text><xsl:value-of select="Name"/>")).Value;
+      </xsl:when>
+      </xsl:choose>
+      </xsl:for-each>
+
+      return result;
+      }
     </xsl:for-each>
   }
   </xsl:for-each>

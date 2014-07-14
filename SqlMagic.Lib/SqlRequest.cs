@@ -44,12 +44,16 @@ namespace Flyingpie.Storm.Lib
 
     public class StoredProcedureTableTypeParameter : StoredProcedureParameter
     {
-        public StoredProcedureTableTypeParameter(string name, IEnumerable table)
+        public StoredProcedureTableTypeParameter(string name, string schemaName, string udtName, IEnumerable table)
         {
             Name = name;
+            SchemaName = schemaName;
+            UdtName = udtName;
             Table = table;
         }
 
+        public string SchemaName { get; set; }
+        public string UdtName { get; set; }
         public IEnumerable Table { get; set; }
 
         public override string ToString()
