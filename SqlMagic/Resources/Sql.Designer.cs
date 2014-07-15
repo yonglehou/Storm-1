@@ -62,6 +62,7 @@ namespace Flyingpie.Storm.Resources {
         
         /// <summary>
         ///   Looks up a localized string similar to SELECT
+        ///  p.SPECIFIC_SCHEMA AS SchemaName,
         ///  p.SPECIFIC_NAME AS StoredProcedureName,
         ///  p.PARAMETER_NAME AS ParameterName,
         ///  p.PARAMETER_MODE AS ParameterMode,
@@ -69,15 +70,13 @@ namespace Flyingpie.Storm.Resources {
         ///  p.USER_DEFINED_TYPE_SCHEMA AS UserDefinedTypeSchema,
         ///  p.USER_DEFINED_TYPE_NAME AS UserDefinedTypeName
         ///FROM INFORMATION_SCHEMA.ROUTINES r
-        ///LEFT JOIN INFORMATION_SCHEMA.PARAMETERS p ON r.SPECIFIC_NAME = p.SPECIFIC_NAME
+        ///LEFT JOIN INFORMATION_SCHEMA.PARAMETERS p
+        ///	ON r.SPECIFIC_SCHEMA = p.SPECIFIC_SCHEMA
+        ///	AND r.SPECIFIC_NAME = p.SPECIFIC_NAME
         ///WHERE
         ///  p.SPECIFIC_NAME IS NOT NULL
         ///GROUP BY
-        ///  p.SPECIFIC_NAME,
-        ///  p.PARAMETER_NAME,
-        ///  p.PARAMETER_MODE,
-        ///  p.DATA_TYPE,
-        ///  p.USER_DEFINED_TY [rest of string was truncated]&quot;;.
+        ///  p.SPECIFIC_S [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string ListParameters {
             get {

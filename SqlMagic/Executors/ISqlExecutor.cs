@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 
-namespace Flyingpie.Storm.Lib
+namespace Flyingpie.Storm.Executors
 {
     public interface ISqlExecutor
     {

@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D263CB19-599C-4ACB-A62D-C64FBE3AF071}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{C2479309-25CF-438E-93DF-421B8D87A4E2}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Flyingpie.Storm.Output</RootNamespace>
-    <AssemblyName>SqlMagic.Output</AssemblyName>
+    <RootNamespace>Flyingpie.Storm.Host</RootNamespace>
+    <AssemblyName>SqlMagic.Host</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -39,26 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.Generated.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Example.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SqlMagic.Lib\Storm.Lib.csproj">
-      <Project>{203fafe9-3485-4a9b-b72d-ae3b4d53f2fd}</Project>
-      <Name>Storm.Lib</Name>
+    <ProjectReference Include="..\SqlMagic.Output\Storm.Output.csproj">
+      <Project>{d263cb19-599c-4acb-a62d-c64fbe3af071}</Project>
+      <Name>Storm.Output</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Storm.Dapper\Storm.Dapper.csproj">
-      <Project>{90100d17-1cd4-4fae-9ed8-b2eee733c126}</Project>
-      <Name>Storm.Dapper</Name>
+    <ProjectReference Include="..\SqlMagic\Storm.csproj">
+      <Project>{32cf1a29-5710-41f1-968d-a7eb22480e09}</Project>
+      <Name>Storm</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Default.xslt">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

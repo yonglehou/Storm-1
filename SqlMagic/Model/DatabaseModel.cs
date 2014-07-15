@@ -1,17 +1,20 @@
-﻿using System;
+﻿using Flyingpie.Storm.Utility;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
 
 namespace Flyingpie.Storm.Model
 {
     public class DatabaseModel
     {
         public List<SchemaInfo> Schemas { get; private set; }
+
         public List<StoredProcedureInfo> StoredProcedures { get; private set; }
+
         public List<ParameterInfo> Parameters { get; private set; }
+
         public List<UserDefinedTypeInfo> UserDefinedTypes { get; private set; }
+
         public List<UserDefinedTypeColumnInfo> UserDefinedTypeColumns { get; private set; }
 
         private string _connectionString;

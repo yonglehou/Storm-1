@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
@@ -16,6 +13,7 @@ namespace Flyingpie.Storm.Model
         public string Name { get; set; }
 
         public List<StoredProcedureInfo> StoredProcedures { get; set; }
+
         public List<UserDefinedTypeInfo> UserDefinedTypes { get; set; }
 
         [XmlIgnore]

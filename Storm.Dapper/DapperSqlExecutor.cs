@@ -1,42 +1,26 @@
-﻿using Flyingpie.Storm.Lib;
+﻿using Flyingpie.Storm.Executors;
+using Flyingpie.Storm.Utility;
+using global::Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using global::Dapper;
-using System.Reflection;
-using System.Collections;
 
-namespace Storm.Dapper
+namespace Flyingpie.Storm.Dapper
 {
     public class DapperSqlExecutor : ISqlExecutor
     {
         private string _connectionString;
+
+        private IDbConnection _connection;
+        private IDbTransaction _transaction;
 
         public DapperSqlExecutor(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public int Query(SqlRequest request)
-        {
-            using (var connection = CreateConnection())
-            {
-                var parameters = CreateParameters(request);
-
-                var result = connection.Execute(
-                    string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
-
-                FetchParameterValue(request, parameters);
-
-                return result;
-            }
-        }
-        // Can we move this? Seems non-specific
         public T Execute<T>(SqlRequest request) where T : SqlResponse
         {
             var response = Activator.CreateInstance<T>();
@@ -46,61 +30,91 @@ namespace Storm.Dapper
             return response;
         }
 
+        public IDbTransaction BeginTransaction()
+        {
+            CreateConnection();
+
+            _transaction = _connection.BeginTransaction();
+
+            return _transaction;
+        }
+
+        public int Query(SqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var result = _connection.Execute(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure, transaction: _transaction);
+
+            FetchParameterValue(request, parameters);
+
+            return result;
+        }
+
         public IEnumerable<T> Query<T>(SqlRequest request)
         {
-            using (var connection = CreateConnection())
-            {
-                var parameters = CreateParameters(request);
+            CreateConnection();
 
-                var result = connection.Query<T>(
-                    string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
+            var parameters = CreateParameters(request);
 
-                return result;
-            }
+            var result = _connection.Query<T>(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure);
+
+            return result;
         }
 
         public Tuple<IEnumerable<T1>, IEnumerable<T2>> Query<T1, T2>(SqlRequest request)
         {
-            using (var connection = CreateConnection())
-            {
-                var parameters = CreateParameters(request);
+            CreateConnection();
 
-                var results = connection.QueryMultiple(
-                    string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
+            var parameters = CreateParameters(request);
 
-                var result1 = results.Read<T1>();
-                var result2 = results.Read<T2>();
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure);
 
-                return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(result1, result2);
-            }
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(result1, result2);
         }
 
         public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> Query<T1, T2, T3>(SqlRequest request)
         {
-            using (var connection = CreateConnection())
-            {
-                var parameters = CreateParameters(request);
+            CreateConnection();
 
-                var results = connection.QueryMultiple(
-                    string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                    parameters,
-                    commandType: CommandType.StoredProcedure);
+            var parameters = CreateParameters(request);
 
-                var result1 = results.Read<T1>();
-                var result2 = results.Read<T2>();
-                var result3 = results.Read<T3>();
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure);
 
-                return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(result1, result2, result3);
-            }
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+            var result3 = results.Read<T3>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(result1, result2, result3);
         }
 
-        private SqlConnection CreateConnection()
+        private void CreateConnection()
         {
-            return new SqlConnection(_connectionString);
+            if (_connection == null || _connection.State == ConnectionState.Closed || _connection.State == ConnectionState.Broken)
+            {
+                _connection = new SqlConnection(_connectionString);
+            }
+
+            if (_connection.State != ConnectionState.Open)
+            {
+                _connection.Open();
+            }
         }
 
         private DynamicParameters CreateParameters(SqlRequest request)
@@ -113,7 +127,7 @@ namespace Storm.Dapper
 
                 if (simple != null)
                 {
-                    parameters.Add(simple.Name, simple.Value, direction: ParameterDirection.InputOutput);
+                    parameters.Add(simple.Name, simple.Value, direction: simple.Mode);
                     continue;
                 }
 
@@ -133,17 +147,26 @@ namespace Storm.Dapper
 
         private void FetchParameterValue(SqlRequest request, DynamicParameters parameters)
         {
+            request
+                .Parameters
+                .Select(p => p as StoredProcedureSimpleParameter) // We need simple parameters
+                .Where(p => p != null) // Non-simple parameters cannot be cast and shall be null
+                .ToList()
+                .ForEach(p => p.Value = parameters.Get<object>(p.Name)) // Retrieve the new parameter value from the executed stored proc
+            ;
+            /*
+
             foreach (var parameter in request.Parameters)
             {
                 var simple = parameter as StoredProcedureSimpleParameter;
 
                 if (simple != null)
                 {
-                    //TODO: Check direction
                     simple.Value = parameters.Get<object>(parameter.Name);
                     continue;
                 }
             }
+             */
         }
     }
 }

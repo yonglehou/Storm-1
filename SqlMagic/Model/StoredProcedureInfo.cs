@@ -1,9 +1,6 @@
-﻿using Flyingpie.Storm.Utility;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Collections.Generic;
+using System.Data;
 using System.Linq;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
@@ -18,20 +15,24 @@ namespace Flyingpie.Storm.Model
 
         [XmlIgnore]
         public SchemaInfo Schema { get; set; }
+
         public List<ParameterInfo> Parameters { get; set; }
 
         public string ParameterString
         {
-            get { return string.Join(", ", Parameters.Select(p => 
-                (p.ParameterModeEnum == ParameterInfo.ParameterMode.In ? "" : "ref ") +
-                p.TypeClr + " " + p.NameClr).ToArray()); }
+            get
+            {
+                return string.Join(", ", Parameters.Select(p =>
+                    (p.ParameterModeEnum == ParameterDirection.Input ? "" : "ref ") +
+                    p.TypeClr + " " + p.NameClr).ToArray());
+            }
             set { /* Required for serialization */ }
         }
 
         internal void Initialize(SchemaInfo schema)
         {
             Schema = schema;
-            Parameters = schema.Database.Parameters.Where(p => p.StoredProcedureName == Name).ToList();
+            Parameters = schema.Database.Parameters.Where(p => p.SchemaName == SchemaName && p.StoredProcedureName == Name).ToList();
             Parameters.ForEach(p => p.Initialize(this));
         }
 

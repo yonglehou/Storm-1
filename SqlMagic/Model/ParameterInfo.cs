@@ -1,20 +1,13 @@
 ﻿using Flyingpie.Storm.Utility;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace Flyingpie.Storm.Model
 {
     public class ParameterInfo
     {
-        public enum ParameterMode
-        {
-            In,
-            Out,
-            InOut
-        }
+        [MapTo("SchemaName")]
+        public string SchemaName { get; set; }
 
         [MapTo("StoredProcedureName")]
         public string StoredProcedureName { get; set; }
@@ -57,22 +50,26 @@ namespace Flyingpie.Storm.Model
             set { /* Required for serialization */ }
         }
 
-        public ParameterMode ParameterModeEnum
+        public ParameterDirection ParameterModeEnum
         {
             get
             {
                 switch (Mode.ToLowerInvariant())
                 {
                     case "in":
-                        return ParameterMode.In;
+                        return ParameterDirection.Input;
+
                     case "inout":
-                        return ParameterMode.InOut;
+                        return ParameterDirection.InputOutput;
+
                     case "out":
-                        return ParameterMode.Out;
+                        return ParameterDirection.Output;
+
                     default:
-                        return ParameterMode.In;
+                        return ParameterDirection.Input;
                 }
             }
+            set { /* Required for serialization */ }
         }
 
         internal void Initialize(StoredProcedureInfo storedProcedure)

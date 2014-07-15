@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -27,7 +26,7 @@ namespace Flyingpie.Storm.CodeGeneration
                 {
                     indent += cInd;
                 }
-                
+
                 line = line.Trim();
                 var tabs = "";
                 for (int ind = 0; ind < indent; ind++)

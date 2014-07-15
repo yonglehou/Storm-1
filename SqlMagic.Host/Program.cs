@@ -2,16 +2,13 @@
 using Flyingpie.Storm.Model;
 using Flyingpie.Storm.Output;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Flyingpie.Storm.Host
 {
-    class Program
+    internal class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             Console.WriteLine("Generate or execute? (g/E)");
             var action = Console.ReadLine();
@@ -26,7 +23,7 @@ namespace Flyingpie.Storm.Host
             }
         }
 
-        static void Generate()
+        private static void Generate()
         {
             var root = @"C:\Users\marcovdo\Source\Repos\Storm\SqlMagic.Output";
             var transform = @"Default.xslt";

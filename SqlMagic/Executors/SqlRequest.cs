@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using System.Text;
 
-namespace Flyingpie.Storm.Lib
+namespace Flyingpie.Storm.Executors
 {
     public class SqlRequest
     {
         public string SchemaName { get; set; }
+
         public string StoredProcedureName { get; set; }
+
         public List<StoredProcedureParameter> Parameters { get; set; }
 
         public SqlRequest(string schemaName, string storedProcedureName)
@@ -34,26 +35,9 @@ namespace Flyingpie.Storm.Lib
 
     public abstract class StoredProcedureParameter
     {
-        public enum ParameterDirection
-        {
-            In,
-            Out,
-            InOut
-        }
-
         public string Name { get; set; }
 
-        public ParameterDirection Direction
-        {
-            get
-            {
-                switch (value)
-                {
-
-                }
-            }
-            set;
-        }
+        public ParameterDirection Mode { get; set; }
 
         public string DirectionString { get; set; }
 
@@ -62,10 +46,10 @@ namespace Flyingpie.Storm.Lib
 
     public class StoredProcedureSimpleParameter : StoredProcedureParameter
     {
-        public StoredProcedureSimpleParameter(string name, string direction, object value)
+        public StoredProcedureSimpleParameter(string name, ParameterDirection mode, object value)
         {
             Name = name;
-            Direction = direction;
+            Mode = mode;
             Value = value;
         }
 
@@ -84,17 +68,19 @@ namespace Flyingpie.Storm.Lib
 
     public class StoredProcedureTableTypeParameter : StoredProcedureParameter
     {
-        public StoredProcedureTableTypeParameter(string name, string direction, string udtSchemaName, string udtName, IEnumerable table)
+        public StoredProcedureTableTypeParameter(string name, ParameterDirection mode, string udtSchemaName, string udtName, IEnumerable table)
         {
             Name = name;
-            Direction = direction;
+            Mode = mode;
             SchemaName = udtSchemaName;
             UdtName = udtName;
             Table = table;
         }
 
         public string SchemaName { get; set; }
+
         public string UdtName { get; set; }
+
         public IEnumerable Table { get; set; }
 
         public override object GetValueAsObject()

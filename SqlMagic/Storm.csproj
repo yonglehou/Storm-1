@@ -42,11 +42,16 @@
     <Compile Include="CodeGeneration\DefaultCodeFormatter.cs" />
     <Compile Include="CodeGeneration\ICodeFormatter.cs" />
     <Compile Include="CodeGeneration\XsltCodeGenerator.cs" />
+    <Compile Include="Executors\AdoSqlExecutor.cs" />
+    <Compile Include="Executors\ISqlExecutor.cs" />
+    <Compile Include="Executors\SqlRequest.cs" />
+    <Compile Include="Executors\SqlResponse.cs" />
     <Compile Include="Model\MapToAttribute.cs" />
     <Compile Include="Model\ParameterInfo.cs" />
     <Compile Include="Model\UserDefinedTypeColumnInfo.cs" />
     <Compile Include="Model\UserDefinedTypeInfo.cs" />
-    <Compile Include="SqlUtil.cs" />
+    <Compile Include="Utility\IEnumerableExtensions.cs" />
+    <Compile Include="Utility\SqlUtil.cs" />
     <Compile Include="Model\DatabaseModel.cs" />
     <Compile Include="Model\SchemaInfo.cs" />
     <Compile Include="Model\StoredProcedureInfo.cs" />

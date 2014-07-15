@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm", "SqlMagic\Storm.csproj", "{32CF1A29-5710-41F1-968D-A7EB22480E09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlMagic.Host", "SqlMagic.Host\SqlMagic.Host.csproj", "{C2479309-25CF-438E-93DF-421B8D87A4E2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Host", "SqlMagic.Host\Storm.Host.csproj", "{C2479309-25CF-438E-93DF-421B8D87A4E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SqlMagic.Output", "SqlMagic.Output\SqlMagic.Output.csproj", "{D263CB19-599C-4ACB-A62D-C64FBE3AF071}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Lib", "SqlMagic.Lib\Storm.Lib.csproj", "{203FAFE9-3485-4A9B-B72D-AE3B4D53F2FD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Output", "SqlMagic.Output\Storm.Output.csproj", "{D263CB19-599C-4ACB-A62D-C64FBE3AF071}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Dapper", "Storm.Dapper\Storm.Dapper.csproj", "{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}"
 EndProject
@@ -29,10 +27,6 @@ Global
 		{D263CB19-599C-4ACB-A62D-C64FBE3AF071}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D263CB19-599C-4ACB-A62D-C64FBE3AF071}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D263CB19-599C-4ACB-A62D-C64FBE3AF071}.Release|Any CPU.Build.0 = Release|Any CPU
-		{203FAFE9-3485-4A9B-B72D-AE3B4D53F2FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{203FAFE9-3485-4A9B-B72D-AE3B4D53F2FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{203FAFE9-3485-4A9B-B72D-AE3B4D53F2FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{203FAFE9-3485-4A9B-B72D-AE3B4D53F2FD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}.Release|Any CPU.ActiveCfg = Release|Any CPU
