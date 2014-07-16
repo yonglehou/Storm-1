@@ -41,7 +41,7 @@ namespace Flyingpie.Storm.Utility
 
                     case "char":
                     case "nchar":
-                        return "char?";
+                        return "string"; //TODO: Maybe we can read the length of the parameter?
 
                     case "varbinary":
                         return "byte[]";

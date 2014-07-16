@@ -3,6 +3,7 @@ using Flyingpie.Storm.Utility;
 using global::Dapper;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,14 +12,30 @@ namespace Flyingpie.Storm.Dapper
 {
     public class DapperSqlExecutor : ISqlExecutor
     {
-        private string _connectionString;
+        private string ConnectionString;
 
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
         public DapperSqlExecutor(string connectionString)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
+        }
+
+        public DapperSqlExecutor()
+        {
+        }
+
+        public void UseConnectionStringFromConfig(string connectionStringName)
+        {
+            var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
+
+            if (connectionString == null)
+            {
+                throw new InvalidOperationException("No connection string found in config with name '" + connectionStringName + "'");
+            }
+
+            ConnectionString = connectionString.ConnectionString;
         }
 
         public T Execute<T>(SqlRequest request) where T : SqlResponse
@@ -64,7 +81,8 @@ namespace Flyingpie.Storm.Dapper
             var result = _connection.Query<T>(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
-                commandType: CommandType.StoredProcedure);
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
 
             return result;
         }
@@ -78,7 +96,8 @@ namespace Flyingpie.Storm.Dapper
             var results = _connection.QueryMultiple(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
-                commandType: CommandType.StoredProcedure);
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
 
             var result1 = results.Read<T1>();
             var result2 = results.Read<T2>();
@@ -95,7 +114,8 @@ namespace Flyingpie.Storm.Dapper
             var results = _connection.QueryMultiple(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
-                commandType: CommandType.StoredProcedure);
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
 
             var result1 = results.Read<T1>();
             var result2 = results.Read<T2>();
@@ -108,7 +128,7 @@ namespace Flyingpie.Storm.Dapper
         {
             if (_connection == null || _connection.State == ConnectionState.Closed || _connection.State == ConnectionState.Broken)
             {
-                _connection = new SqlConnection(_connectionString);
+                _connection = new SqlConnection(ConnectionString);
             }
 
             if (_connection.State != ConnectionState.Open)

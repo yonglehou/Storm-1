@@ -1,6 +1,5 @@
 ﻿using Flyingpie.Storm.CodeGeneration;
 using Flyingpie.Storm.Model;
-using Flyingpie.Storm.Output;
 using System;
 using System.IO;
 
@@ -25,7 +24,7 @@ namespace Flyingpie.Storm.Host
 
         private static void Generate()
         {
-            var root = @"C:\Users\marcovdo\Source\Repos\Storm\SqlMagic.Output";
+            var root = @"C:\Users\marcovdo\Source\Repos\Storm\SqlMagic.Host";
             var transform = @"Default.xslt";
             var output = @"Database.Generated.cs";
 
@@ -37,12 +36,7 @@ namespace Flyingpie.Storm.Host
             // Generate code
             Console.WriteLine("Generating code from model..");
             var fileName = Path.Combine(root, output);
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-
-            //var stream = File.Open(fileName, FileMode.OpenOrCreate);
+            
             var codeGenerator = new XsltCodeGenerator(model);
             var code = codeGenerator.Generate(Path.Combine(root, transform));
 

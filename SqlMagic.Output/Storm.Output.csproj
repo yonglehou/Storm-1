@@ -42,7 +42,6 @@
     <Compile Include="Database.Generated.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Example.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

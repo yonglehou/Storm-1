@@ -1,8 +1,9 @@
 ﻿using Flyingpie.Storm.Dapper;
 using Flyingpie.Storm.Executors;
+using System;
 using System.Collections.Generic;
 
-namespace Flyingpie.Storm.Output
+namespace Flyingpie.Storm.Host
 {
     public class ZorgverstrekkerBudget
     {
@@ -28,17 +29,34 @@ namespace Flyingpie.Storm.Output
 
     public class Example
     {
+        private ISqlExecutor _executor;
+
         public Example()
         {
-            Example1();
+            _executor = new DapperSqlExecutor("server=DBCS_PRD_SQLSRV;database=DBCServices5;integrated security=true;");
+
+            SelectStatic();
+            SelectDynamic();
+            Update();
         }
 
-        public void Example1()
+        public void SelectStatic()
         {
-            var executor = new DapperSqlExecutor("server=DBCS_PRD_SQLSRV;database=DBCServices5;integrated security=true;");
-            var analyse = new Database.Analyse(executor);
-            //var result = analyse.csp_ZorgverstrekkerBudget_s01<SqlResponse<ZorgverstrekkerBudget>>(1, 1, null, 409);
-            //var result = analyse.csp_Periode_s01<SqlResponse<dynamic>>(new DateTime(2000, 1, 1), 409);
+            var analyse = new Database.Analyse(_executor);
+            
+            var result = analyse.csp_ZorgverstrekkerBudget_s01<SqlResponse<ZorgverstrekkerBudget>>(1, 1, null, 409);
+        }
+
+        public void SelectDynamic()
+        {
+            var analyse = new Database.Analyse(_executor);
+
+            var result = analyse.csp_Periode_s01<SqlResponse<dynamic>>(new DateTime(2000, 1, 1), 409);
+        }
+
+        public void Update()
+        {
+            var analyse = new Database.Analyse(_executor);
 
             var lijst = new List<Database.UserDefinedTypes.Analyse.udtUpdateBehandelingZwarteLijst>()
             {
@@ -65,12 +83,7 @@ namespace Flyingpie.Storm.Output
                 }
             };
 
-            using (var transaction = executor.BeginTransaction())
-            {
-                int? zvzId = 409;
-                analyse.csp_BehandelingZwarteLijst_u01<SqlResponse>(lijst, ref zvzId);
-                transaction.Commit();
-            }
+            analyse.csp_BehandelingZwarteLijst_u01<SqlResponse>(lijst, 409);
         }
     }
 }

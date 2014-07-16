@@ -41,18 +41,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database.Generated.cs" />
+    <Compile Include="Example.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SqlMagic.Output\Storm.Output.csproj">
-      <Project>{d263cb19-599c-4acb-a62d-c64fbe3af071}</Project>
-      <Name>Storm.Output</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SqlMagic\Storm.csproj">
       <Project>{32cf1a29-5710-41f1-968d-a7eb22480e09}</Project>
       <Name>Storm</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Storm.Dapper\Storm.Dapper.csproj">
+      <Project>{90100d17-1cd4-4fae-9ed8-b2eee733c126}</Project>
+      <Name>Storm.Dapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.xslt">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
