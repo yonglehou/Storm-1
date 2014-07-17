@@ -6,6 +6,7 @@ using Flyingpie.Storm.Dapper;
 using Database;
 using Storm.Test.Dto;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace Storm.Test
 {
@@ -13,16 +14,19 @@ namespace Storm.Test
     public class SelectTest
     {
         private ISqlExecutor _executor;
+
         private IAfspraak _afspraak;
         private IAnalyse _analyse;
+        private IDbc _dbc;
 
         [TestInitialize]
         public void Initialize()
         {
-            _executor = new DapperSqlExecutor("server=DBCS_PRD_SQLSRV;database=DBCServices5;integrated security=true;");
+            _executor = DapperSqlExecutor.FromConnectionStringName("DbcServices5");
 
             _afspraak = new Afspraak(_executor);
             _analyse = new Analyse(_executor);
+            _dbc = new Dbc(_executor);
         }
 
         [TestMethod]
@@ -32,7 +36,7 @@ namespace Storm.Test
 
             Assert.IsNotNull(result);
             Assert.IsNotNull(result.Items);
-            Assert.AreEqual(1765, result.Items.Count());
+            Assert.AreEqual(1445, result.Items.Count());
 
             var r = result.Items.Single(r1 => r1.Id == 888);
 
@@ -213,6 +217,21 @@ namespace Storm.Test
                 toelichting);
         }
 
+        [TestMethod]
+        public void MultipleResultSets()
+        {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            var result = _dbc.csp_BehandelingStamdata_s01<SqlResponse<Behandeling, Diagnose, Prestatie>>(new DateTime(2014, 1, 1));
+
+            stopwatch.Stop();
+
+            Assert.AreEqual(59, result.Items1.Count());
+            Assert.AreEqual(57, result.Items2.Count());
+            Assert.AreEqual(222660, result.Items3.Count());
+        }
+
         #region Test Data
 
         private List<Database.UserDefinedTypes.Analyse.udtUpdateBehandelingZwarteLijst> GetResetList()
@@ -269,6 +288,24 @@ namespace Storm.Test
                     ZorgverstrekkerId = 39
                 }
             };
+        }
+
+        #endregion
+
+        #region Storm
+
+        [TestMethod]
+        public void Select()
+        {
+            var executor = DapperSqlExecutor.FromConnectionStringName("TestDatabase");
+            var orm = new Orm(executor);
+
+            var result = orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+
+            Assert.AreEqual(10, result.Items.Count());
+
+            Assert.IsTrue(result.Items.Any(i => i.Name == "Audi" && i.Description == "The steering wheel is an option"));
+            Assert.IsTrue(result.Items.Any(i => i.Name == "Volvo" && i.Description == "The search for perfection ends here"));
         }
 
         #endregion

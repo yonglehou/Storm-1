@@ -12,21 +12,23 @@ namespace Flyingpie.Storm.Dapper
 {
     public class DapperSqlExecutor : ISqlExecutor
     {
-        private string ConnectionString;
+        public string ConnectionString { get; private set; }
 
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
-        public DapperSqlExecutor(string connectionString)
-        {
-            ConnectionString = connectionString;
-        }
-
-        public DapperSqlExecutor()
+        private DapperSqlExecutor()
         {
         }
 
-        public void UseConnectionStringFromConfig(string connectionStringName)
+        public static DapperSqlExecutor FromConnectionString(string connectionString)
+        {
+            var executor = new DapperSqlExecutor();
+            executor.ConnectionString = connectionString;
+            return executor;
+        }
+
+        public static DapperSqlExecutor FromConnectionStringName(string connectionStringName)
         {
             var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
 
@@ -35,7 +37,7 @@ namespace Flyingpie.Storm.Dapper
                 throw new InvalidOperationException("No connection string found in config with name '" + connectionStringName + "'");
             }
 
-            ConnectionString = connectionString.ConnectionString;
+            return FromConnectionString(connectionString.ConnectionString);
         }
 
         public T Execute<T>(SqlRequest request) where T : SqlResponse
