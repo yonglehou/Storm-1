@@ -7,8 +7,8 @@
     <ProjectGuid>{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Storm.Dapper</RootNamespace>
-    <AssemblyName>Storm.Dapper</AssemblyName>
+    <RootNamespace>Flyingpie.Storm.Dapper</RootNamespace>
+    <AssemblyName>Flyingpie.Storm.Dapper</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

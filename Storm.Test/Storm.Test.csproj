@@ -56,12 +56,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="Dto\Behandeling.cs" />
-    <Compile Include="Dto\BehandelingZwarteLijst.cs" />
-    <Compile Include="Dto\Diagnose.cs" />
-    <Compile Include="Dto\Prestatie.cs" />
     <Compile Include="Dto\SmallTableRow.cs" />
-    <Compile Include="Dto\ZorgverstrekkerBudget.cs" />
     <Compile Include="GenerateDatabaseLayer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -71,10 +66,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Storm.Host\Storm.Host.csproj">
-      <Project>{c2479309-25cf-438e-93df-421b8d87a4e2}</Project>
-      <Name>Storm.Host</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Storm\Storm.csproj">
       <Project>{32cf1a29-5710-41f1-968d-a7eb22480e09}</Project>
       <Name>Storm</Name>
