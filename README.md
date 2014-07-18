@@ -1,4 +1,4 @@
 Storm
 =====
 
-Generates a C# access layer for SQL stored procedures
+Automagically generate C# database layers for stored procedures
