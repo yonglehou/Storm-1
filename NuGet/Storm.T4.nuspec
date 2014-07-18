@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Storm.T4</id>
+    <version>1.0.0</version>
+    <authors>Flyingpie</authors>
+    <owners>Flyingpie</owners>
+    <licenseUrl>https://github.com/FlyingPie/Storm/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/FlyingPie/Storm</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/1295673?s=460</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>T4 template for use with Storm</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Database ORM Stored Procedure</tags>
+    <dependencies>
+      <dependency id="Storm" version="1.0.0" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="Storm.T4\GenerateDatabaseLayer.tt" target="content\GenerateDatabaseLayer.tt" />
+</files>
+</package>

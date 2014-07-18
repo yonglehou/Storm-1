@@ -9,6 +9,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Test", "Storm.Test\St
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Database", "Storm.Database\Storm.Database.csproj", "{59CF3061-A86E-4B81-AEA6-17747B92A40A}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{5B88195B-025F-4337-AD3F-5641EA8F3606}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.T4", "Storm.T4\Storm.T4.csproj", "{379C3464-20C3-45E0-BF4D-EDB4960B333D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +40,10 @@ Global
 		{59CF3061-A86E-4B81-AEA6-17747B92A40A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{59CF3061-A86E-4B81-AEA6-17747B92A40A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{59CF3061-A86E-4B81-AEA6-17747B92A40A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{379C3464-20C3-45E0-BF4D-EDB4960B333D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{379C3464-20C3-45E0-BF4D-EDB4960B333D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{379C3464-20C3-45E0-BF4D-EDB4960B333D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{379C3464-20C3-45E0-BF4D-EDB4960B333D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

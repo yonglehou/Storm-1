@@ -1,0 +1,1 @@
+powershell ./CreateNuGetPackage.ps1 -autoExit | wtee log.txt

@@ -13,8 +13,6 @@ namespace Storm.Test
     [TestClass]
     public class SelectTest
     {
-        #region Storm
-
         [TestMethod]
         public void Select()
         {
@@ -28,7 +26,5 @@ namespace Storm.Test
             Assert.IsTrue(result.Items.Any(i => i.Name == "Audi" && i.Description == "The steering wheel is an option"));
             Assert.IsTrue(result.Items.Any(i => i.Name == "Volvo" && i.Description == "The search for perfection ends here"));
         }
-
-        #endregion
     }
 }

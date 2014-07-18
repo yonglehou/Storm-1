@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Storm</id>
+    <version>1.0.0</version>
+    <authors>Flyingpie</authors>
+    <owners>Flyingpie</owners>
+    <licenseUrl>https://github.com/FlyingPie/Storm/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/FlyingPie/Storm</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/1295673?s=460</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automagically generate C# database layers for stored procedures</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Database ORM Stored Procedure</tags>
+    <!--<dependencies>
+	  <dependency id="log4net" version="2.0.3" />
+	  <dependency id="Moq" version="4.2.1402.2112" />
+      <dependency id="Selenium.WebDriver" version="2.41.0" />
+	  <dependency id="Selenium.Support" version="2.41.0" />
+	  <dependency id="Unity" version="2.1.505.2" />
+	  <dependency id="Unity.Interception" version="2.1.505.2" />
+    </dependencies>-->
+  </metadata>
+  <files>
+    <file src="Storm\bin\Release\Flyingpie.Storm.dll" target="lib\net40\Flyingpie.Storm.dll" />
+</files>
+</package>

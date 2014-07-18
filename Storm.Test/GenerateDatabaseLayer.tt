@@ -1,10 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
-<#@ assembly name="System.Core" #>
-<#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
-<#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
-<#@ assembly name="$(SolutionDir)Storm\bin\Debug\Flyingpie.Storm.dll" #>
+<#@ assembly name="$(TargetDir)Flyingpie.Storm.dll" #>
 <#@ import namespace="Flyingpie.Storm" #>
 <#
 var generator = Generator.FromConnectionString("data source=.;initial catalog=Storm;integrated security=true;");
