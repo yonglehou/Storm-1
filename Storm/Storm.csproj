@@ -43,7 +43,6 @@
     <Compile Include="Formatters\DefaultCodeFormatter.cs" />
     <Compile Include="Formatters\ICodeFormatter.cs" />
     <Compile Include="CodeGenerators\XsltCodeGenerator.cs" />
-    <Compile Include="Executors\AdoSqlExecutor.cs" />
     <Compile Include="Executors\ISqlExecutor.cs" />
     <Compile Include="Executors\SqlRequest.cs" />
     <Compile Include="Executors\SqlResponse.cs" />

@@ -2,6 +2,8 @@
 
 Automagically generates C# database layers for stored procedures. Generation can be done via a T4 template, a command line tool or by referencing the library directly.
 
+Storm currently works for SQL Server only.
+
 ## Features
 
 * Turns stored procedures into typed methods, contained within mockable C# classes
