@@ -1,18 +1,18 @@
 # Storm
 
-Automagically generate C# database layers for stored procedures. Generation can be done via a T4 template, a command line tool or referencing the library directly.
+Automagically generate C# database layers for stored procedures. Generation can be done via a T4 template, a command line tool or by referencing the library directly.
 
 ## Features
 
-* Turns stored procedures into typed, mockable C# classes
-* Generates classes for user defined types and passes them as IEnumerable<T> to table valued parameters
+* Turns stored procedures into typed methods, contained within mockable C# classes
+* Generates classes for user defined types and passes them as IEnumerable&lt;T&gt; to table valued parameters
 * Presents OUT and INOUT parameters as ref-type parameters and updates them automatically
 * Each layer in the system can be customized using custom interface implementations
 
 ## Project Info
 
-* *Documentation*: [https://github.com/FlyingPie/Storm/wiki](https://github.com/FlyingPie/Storm/wiki)
-* *Bugs and changes*: [https://github.com/FlyingPie/Storm/issues](https://github.com/FlyingPie/Storm/issues)
+* **Documentation**: [https://github.com/FlyingPie/Storm/wiki](https://github.com/FlyingPie/Storm/wiki)
+* **Bugs and changes**: [https://github.com/FlyingPie/Storm/issues](https://github.com/FlyingPie/Storm/issues)
 
 ## Example
 
