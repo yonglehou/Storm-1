@@ -5,9 +5,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Storm.Dapper")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Dapper driver for use with Storm")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Flyingpie")]
 [assembly: AssemblyProduct("Storm.Dapper")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

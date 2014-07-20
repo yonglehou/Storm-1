@@ -7,8 +7,8 @@
     <ProjectGuid>{59CF3061-A86E-4B81-AEA6-17747B92A40A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Storm.Database</RootNamespace>
-    <AssemblyName>Storm.Database</AssemblyName>
+    <RootNamespace>Flyingpie.Storm.Database</RootNamespace>
+    <AssemblyName>Flyingpie.Storm.Database</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

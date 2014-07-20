@@ -7,29 +7,29 @@ using System.Xml.Xsl;
 
 namespace Flyingpie.Storm.CodeGenerators
 {
-    public class XsltCodeGenerator
+    public class XsltCodeGenerator : ICodeGenerator
     {
-        public DatabaseModel Model { get; private set; }
+        private string _xslt;
 
-        public XsltCodeGenerator(DatabaseModel model)
+        public XsltCodeGenerator(string xslt)
         {
-            Model = model;
+            _xslt = xslt;
         }
 
-        public string Generate(string xslt)
+        public string Generate(DatabaseModel model)
         {
             var result = new StringBuilder();
 
             using (var stream = new MemoryStream())
             using (var writer = XmlWriter.Create(result, new XmlWriterSettings() { ConformanceLevel = ConformanceLevel.Fragment }))
             {
-                System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(Model.GetType());
-                x.Serialize(stream, Model);
+                System.Xml.Serialization.XmlSerializer x = new System.Xml.Serialization.XmlSerializer(model.GetType());
+                x.Serialize(stream, model);
                 stream.Position = 0;
 
                 var doc = new XPathDocument(stream);
                 var transform = new XslCompiledTransform();
-                var xmlReader = XmlReader.Create(new StringReader(xslt));
+                var xmlReader = XmlReader.Create(new StringReader(_xslt));
                 transform.Load(xmlReader);
                 transform.Transform(doc, writer);
             }

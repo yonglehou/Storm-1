@@ -3,6 +3,6 @@
 <#@ assembly name="$(TargetDir)Flyingpie.Storm.dll" #>
 <#@ import namespace="Flyingpie.Storm" #>
 <#
-var generator = Generator.FromConnectionString("data source=<host>;initial catalog=<database>;integrated security=true;");
+var generator = Generator.FromConnectionString("data source=localhost;initial catalog=Storm;integrated security=true;");
 Write(generator.Generate());
 #>

@@ -12,6 +12,8 @@ namespace Flyingpie.Storm
     {
         private string _connectionString;
 
+        private ICodeGenerator _generator;
+
         private Generator()
         {
 
@@ -37,8 +39,8 @@ namespace Flyingpie.Storm
             model.Initialize();
 
             // Generate code
-            var codeGenerator = new XsltCodeGenerator(model);
-            var code = codeGenerator.Generate(Resources.Xslt.Default);
+            var codeGenerator = new XsltCodeGenerator(Resources.Xslt.Default);
+            var code = codeGenerator.Generate(model);
 
             var formatter = new DefaultCodeFormatter();
             code = formatter.Format(code);

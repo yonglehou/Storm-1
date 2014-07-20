@@ -58,6 +58,7 @@ if ($skipNuGetPackage -ne $true) {
 	& $nuget Pack "Storm.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
 	& $nuget Pack "Storm.Dapper.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
 	& $nuget Pack "Storm.T4.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
+	& $nuget Pack "Storm.Cli.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
 	CheckExitCode "NuGet Pack"
 } else {
 	Write-Host "Skipping creation of NuGet package" -f yellow

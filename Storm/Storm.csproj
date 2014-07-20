@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CodeGenerators\ICodeGenerator.cs" />
     <Compile Include="Formatters\DefaultCodeFormatter.cs" />
     <Compile Include="Formatters\ICodeFormatter.cs" />
     <Compile Include="CodeGenerators\XsltCodeGenerator.cs" />

@@ -7,8 +7,8 @@
     <ProjectGuid>{379C3464-20C3-45E0-BF4D-EDB4960B333D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Storm.T4</RootNamespace>
-    <AssemblyName>Storm.T4</AssemblyName>
+    <RootNamespace>Flyingpie.Storm.T4</RootNamespace>
+    <AssemblyName>Flyingpie.Storm.T4</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

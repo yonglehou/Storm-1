@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Storm.T4")]
-[assembly: AssemblyDescription("T4 template for use with Storm")]
+[assembly: AssemblyTitle("Storm.Dapper.Test")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Flyingpie")]
-[assembly: AssemblyProduct("Storm.T4")]
+[assembly: AssemblyProduct("Storm.Dapper.Test")]
 [assembly: AssemblyCopyright("Copyright © Flyingpie 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a9c2c23a-15e8-4dc4-bc0f-cac7986f5c2a")]
+[assembly: Guid("fcaf81ad-d736-4ee7-9b6c-f13b05c69da1")]
 
 // Version information for an assembly consists of the following four values:
 //
