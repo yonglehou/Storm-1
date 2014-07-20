@@ -16,9 +16,11 @@ Automagically generate C# database layers for stored procedures. Generation can 
 
 ## Example
 
+### Code generation
+
 Using T4
 
-```csharp
+```
 <#@ assembly name="$(TargetDir)Flyingpie.Storm.dll" #>
 <#@ import namespace="Flyingpie.Storm" #>
 <#
@@ -39,6 +41,17 @@ Using library reference
 var generator = Generator.FromConnectionString("server=localhost;database=Storm;integrated security=true;");
 var code = generator.Generate();
 File.WriteAllText("DB.cs", code);
+```
+
+### Code usage
+
+```csharp
+var executor = DapperSqlExecutor.FromConnectionString("server=localhost;database=Storm;integrated security=true;");
+var orm = new Orm(executor);
+
+var result = orm.GetProducts<SqlResponse<Product>>(2004, "Furniture", null);
+
+var productNames = result.Items.Select(p => p.Name);
 ```
 
 ## Architecture
