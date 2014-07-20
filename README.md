@@ -46,11 +46,16 @@ File.WriteAllText("DB.cs", code);
 ### Code usage
 
 ```csharp
+// Construct a sql executor
 var executor = DapperSqlExecutor.FromConnectionString("server=localhost;database=Storm;integrated security=true;");
-var orm = new Orm(executor);
 
-var result = orm.GetProducts<SqlResponse<Product>>(2004, "Furniture", null);
+// Construct an accessor class, ProductCatalog is the name of the schema
+var catalog = new ProductCatalog(executor);
 
+// Retrieve some data
+var result = catalog.GetProducts<SqlResponse<Product>>(2004, "Furniture", null);
+
+// Profit
 var productNames = result.Items.Select(p => p.Name);
 ```
 
