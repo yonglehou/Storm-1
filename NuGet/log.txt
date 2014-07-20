@@ -1,0 +1,401 @@
+Creating Storm NuGet package...
+MSBuild.exe was found
+vstest.console.exe was found
+NuGet.exe was found
+Building Storm...
+Microsoft (R) Build Engine version 4.0.30319.18408
+[Microsoft .NET Framework, version 4.0.30319.18408]
+Copyright (C) Microsoft Corporation. All rights reserved.
+
+Building the projects in this solution one at a time. To enable parallel build, please add the "/m" switch.
+Build started 20-7-2014 15:21:17.
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" on node 1 (default targets).
+ValidateSolutionConfiguration:
+  Building solution configuration "Release|Any CPU".
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm\Storm.csproj" (2) on node 1 (default targets).
+CoreResGen:
+  No resources are out of date with respect to their source files. Skipping resource generation.
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+CopyFilesToOutputDirectory:
+  Storm -> C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm\Storm.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\Storm.Dapper.csproj" (3) on node 1 (default targets).
+RestorePackages:
+  "C:\Users\marcoo\Source\Repos\Storm\.nuget\NuGet.exe" install "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\marcoo\Source\Repos\Storm\ "
+  Restoring NuGet packages...
+  To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
+  All packages listed in packages.config are already installed.
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+CopyFilesToOutputDirectory:
+  Storm.Dapper -> C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Flyingpie.Storm.Dapper.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\Storm.Dapper.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Test\Storm.Test.csproj" (5) on node 1 (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+_CopyAppConfigFile:
+Skipping target "_CopyAppConfigFile" because all output files are up-to-date with respect to the input files.
+CopyFilesToOutputDirectory:
+  Storm.Test -> C:\Users\marcoo\Source\Repos\Storm\Storm.Test\bin\Release\Flyingpie.Storm.Test.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Test\Storm.Test.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Database\Storm.Database.csproj" (6) on node 1 (default targets).
+RestorePackages:
+  "C:\Users\marcoo\Source\Repos\Storm\.nuget\NuGet.exe" install "C:\Users\marcoo\Source\Repos\Storm\Storm.Database\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\marcoo\Source\Repos\Storm\ "
+  Restoring NuGet packages...
+  To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
+  All packages listed in packages.config are already installed.
+PreBuildEvent:
+  xcopy /Y C:\Users\marcoo\Source\Repos\Storm\packages\FluentMigrator.1.2.1.0\tools\Migrate.exe C:\Users\marcoo\Source\Repos\Storm\Storm.Database\bin\Release\
+  C:\Users\marcoo\Source\Repos\Storm\packages\FluentMigrator.1.2.1.0\tools\Migrate.exe
+  1 File(s) copied
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+_CopyOutOfDateSourceItemsToOutputDirectoryAlways:
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Database\migrate.cmd" to "bin\Release\migrate.cmd".
+CopyFilesToOutputDirectory:
+  Storm.Database -> C:\Users\marcoo\Source\Repos\Storm\Storm.Database\bin\Release\Flyingpie.Storm.Database.dll
+PostBuildEvent:
+  migrate.cmd
+  -------------------------------------------------------------------------------
+  =============================== FluentMigrator ================================
+  -------------------------------------------------------------------------------
+  Source Code:
+    http://github.com/schambers/fluentmigrator
+  Ask For Help:
+    http://groups.google.com/group/fluentmigrator-google-group
+  -------------------------------------------------------------------------------
+  [+] Using Database sqlserver2008 and Connection String data source=.;database=Storm;integrated security=true;
+  -------------------------------------------------------------------------------
+  1: InitialMigration reverting
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] ExecuteSqlStatement DROP PROCEDURE Orm.GetSmallTable
+  [+] DeleteTable SmallTable
+  [+] DeleteSchema Orm
+  [+] Committing Transaction
+  [+] 1: InitialMigration reverted
+  [+] Task completed.
+  -------------------------------------------------------------------------------
+  =============================== FluentMigrator ================================
+  -------------------------------------------------------------------------------
+  Source Code:
+    http://github.com/schambers/fluentmigrator
+  Ask For Help:
+    http://groups.google.com/group/fluentmigrator-google-group
+  -------------------------------------------------------------------------------
+  [+] Using Database sqlserver2008 and Connection String data source=.;database=Storm;integrated security=true;
+  -------------------------------------------------------------------------------
+  VersionMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateTable VersionInfo
+  [+] Committing Transaction
+  [+] VersionMigration migrated
+  -------------------------------------------------------------------------------
+  VersionUniqueMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateIndex VersionInfo (Version)
+  [+] AlterTable VersionInfo
+  [+] CreateColumn VersionInfo AppliedOn DateTime
+  [+] Committing Transaction
+  [+] VersionUniqueMigration migrated
+  -------------------------------------------------------------------------------
+  VersionDescriptionMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] AlterTable VersionInfo
+  [+] CreateColumn VersionInfo Description String
+  [+] Committing Transaction
+  [+] VersionDescriptionMigration migrated
+  -------------------------------------------------------------------------------
+  1: InitialMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateSchema Orm
+  [+] CreateTable SmallTable
+  [+] ExecuteSqlStatement 
+                  CREATE PROCEDURE Orm.GetSmallTable
+                  (
+  	                @Name			NVARCHAR(255),
+  	                @Description	NVARCHAR(255)
+                  )
+                  AS
+                  BEGIN
+  	                SELECT
+  		                Id,
+  		                Name,
+  		                Description
+  	                FROM Orm.SmallTable
+  	                WHERE
+  		                (@Name IS NULL OR Name = @Name)
+  		                AND
+  		                (@Description IS NULL OR Description = Description)
+                  END
+  [+] Committing Transaction
+  [+] 1: InitialMigration migrated
+  -------------------------------------------------------------------------------
+  SmallTable migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] -> 1 Insert operations completed in 00:00:00.0020001 taking an average of 00:00:00.0020001
+  [+] Committing Transaction
+  [+] SmallTable migrated
+  [+] Task completed.
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Database\Storm.Database.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\Storm.T4.csproj" (7) on node 1 (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+CopyFilesToOutputDirectory:
+  Storm.T4 -> C:\Users\marcoo\Source\Repos\Storm\Storm.T4\bin\Release\Flyingpie.Storm.T4.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\Storm.T4.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\Storm.Dapper.Test.csproj" (8) on node 1 (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+Skipping target "CoreCompile" because all output files are up-to-date with respect to the input files.
+CopyFilesToOutputDirectory:
+  Storm.Dapper.Test -> C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\bin\Release\Storm.Dapper.Test.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\Storm.Dapper.Test.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\Storm.Cli.csproj" (9) on node 1 (default targets).
+RestorePackages:
+  "C:\Users\marcoo\Source\Repos\Storm\.nuget\NuGet.exe" install "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\marcoo\Source\Repos\Storm\ "
+  Restoring NuGet packages...
+  To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
+  All packages listed in packages.config are already installed.
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:AnyCPU /errorreport:prompt /warn:4 /define:TRACE /highentropyva- /reference:C:\Users\marcoo\Source\Repos\Storm\packages\CommandLineParser.1.9.71\lib\net40\CommandLine.dll /reference:C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Flyingpie.Storm.Dapper.dll /reference:C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.ComponentModel.DataAnnotations.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\Flyingpie.Storm.Cli.exe /target:exe /utf8output Options.cs Program.cs Properties\AssemblyInfo.cs "C:\Users\marcoo\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cs"
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\Flyingpie.Storm.Cli.exe" to "bin\Release\Flyingpie.Storm.Cli.exe".
+  Storm.Cli -> C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\bin\Release\Flyingpie.Storm.Cli.exe
+  Copying file from "obj\Release\Flyingpie.Storm.Cli.pdb" to "bin\Release\Flyingpie.Storm.Cli.pdb".
+PostBuildEvent:
+  "C:\Users\marcoo\Source\Repos\Storm\packages\ILRepack.1.25.0\tools\ILRepack.exe" /target:exe /out:stormcli.exe Flyingpie.Storm.Cli.exe CommandLine.dll Flyingpie.Storm.dll Flyingpie.Storm.Dapper.dll Dapper.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\Storm.Cli.csproj" (default targets).
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (default targets).
+
+Build succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:06.07
+Buid successful
+Running unit tests...
+Microsoft (R) Test Execution Command Line Tool Version 11.0.60315.1
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+Passed   Select
+Passed   TestMethod1
+
+Total tests: 2. Passed: 2. Failed: 0. Skipped: 0.
+Test Run Successful.
+Test execution time: 0,2006 Seconds
+Unit test run successful
+Updating NuGet...
+Checking for updates from https://www.nuget.org/api/v2/.
+Currently running NuGet.exe 2.8.2.
+NuGet.exe is up to date.
+No version file found, using 1.0.0
+Attempting to build package from 'Storm.nuspec'.
+Successfully created package 'Release\Storm.1.0.0.nupkg'.
+Attempting to build package from 'Storm.Dapper.nuspec'.
+Successfully created package 'Release\Storm.Dapper.1.0.0.nupkg'.
+Attempting to build package from 'Storm.T4.nuspec'.
+Successfully created package 'Release\Storm.T4.1.0.0.nupkg'.
+Attempting to build package from 'Storm.Cli.nuspec'.
+Successfully created package 'Release\Storm.Cli.1.0.0.nupkg'.
+Done
+ator-google-group
+  -------------------------------------------------------------------------------
+  [+] Using Database sqlserver2008 and Connection String data source=.;database=Storm;integrated security=true;
+  -------------------------------------------------------------------------------
+  1: InitialMigration reverting
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] ExecuteSqlStatement DROP PROCEDURE Orm.GetSmallTable
+  [+] DeleteTable SmallTable
+  [+] DeleteSchema Orm
+  [+] Committing Transaction
+  [+] 1: InitialMigration reverted
+  [+] Task completed.
+  -------------------------------------------------------------------------------
+  =============================== FluentMigrator ================================
+  -------------------------------------------------------------------------------
+  Source Code:
+    http://github.com/schambers/fluentmigrator
+  Ask For Help:
+    http://groups.google.com/group/fluentmigrator-google-group
+  -------------------------------------------------------------------------------
+  [+] Using Database sqlserver2008 and Connection String data source=.;database=Storm;integrated security=true;
+  -------------------------------------------------------------------------------
+  VersionMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateTable VersionInfo
+  [+] Committing Transaction
+  [+] VersionMigration migrated
+  -------------------------------------------------------------------------------
+  VersionUniqueMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateIndex VersionInfo (Version)
+  [+] AlterTable VersionInfo
+  [+] CreateColumn VersionInfo AppliedOn DateTime
+  [+] Committing Transaction
+  [+] VersionUniqueMigration migrated
+  -------------------------------------------------------------------------------
+  VersionDescriptionMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] AlterTable VersionInfo
+  [+] CreateColumn VersionInfo Description String
+  [+] Committing Transaction
+  [+] VersionDescriptionMigration migrated
+  -------------------------------------------------------------------------------
+  1: InitialMigration migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] CreateSchema Orm
+  [+] CreateTable SmallTable
+  [+] ExecuteSqlStatement 
+                  CREATE PROCEDURE Orm.GetSmallTable
+                  (
+  	                @Name			NVARCHAR(255),
+  	                @Description	NVARCHAR(255)
+                  )
+                  AS
+                  BEGIN
+  	                SELECT
+  		                Id,
+  		                Name,
+  		                Description
+  	                FROM Orm.SmallTable
+  	                WHERE
+  		                (@Name IS NULL OR Name = @Name)
+  		                AND
+  		                (@Description IS NULL OR Description = Description)
+                  END
+  [+] Committing Transaction
+  [+] 1: InitialMigration migrated
+  -------------------------------------------------------------------------------
+  SmallTable migrating
+  -------------------------------------------------------------------------------
+  [+] Beginning Transaction
+  [+] -> 1 Insert operations completed in 00:00:00.0020001 taking an average of 00:00:00.0020001
+  [+] Committing Transaction
+  [+] SmallTable migrated
+  [+] Task completed.
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Database\Storm.Database.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\Storm.T4.csproj" (7) on node 1 (default targets).
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /highentropyva- /reference:C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\Flyingpie.Storm.T4.dll /target:library /utf8output GenerateDatabaseLayer.cs Properties\AssemblyInfo.cs "C:\Users\marcoo\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cs"
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll" to "bin\Release\Flyingpie.Storm.dll".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.pdb" to "bin\Release\Flyingpie.Storm.pdb".
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\Flyingpie.Storm.T4.dll" to "bin\Release\Flyingpie.Storm.T4.dll".
+  Storm.T4 -> C:\Users\marcoo\Source\Repos\Storm\Storm.T4\bin\Release\Flyingpie.Storm.T4.dll
+  Copying file from "obj\Release\Flyingpie.Storm.T4.pdb" to "bin\Release\Flyingpie.Storm.T4.pdb".
+IncrementalClean:
+  Deleting file "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\obj\Release\Storm.T4.dll".
+  Deleting file "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\obj\Release\Storm.T4.pdb".
+  Deleting file "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\bin\Release\Storm.T4.dll".
+  Deleting file "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\bin\Release\Storm.T4.pdb".
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.T4\Storm.T4.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\Storm.Dapper.Test.csproj" (8) on node 1 (default targets).
+PrepareForBuild:
+  Creating directory "obj\Release\".
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /errorreport:prompt /warn:4 /define:TRACE /highentropyva- /reference:"C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\ReferenceAssemblies\v4.0\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\Storm.Dapper.Test.dll /target:library /utf8output Properties\AssemblyInfo.cs DapperSqlExecutorTest.cs "C:\Users\marcoo\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cs"
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\Storm.Dapper.Test.dll" to "bin\Release\Storm.Dapper.Test.dll".
+  Storm.Dapper.Test -> C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\bin\Release\Storm.Dapper.Test.dll
+  Copying file from "obj\Release\Storm.Dapper.Test.pdb" to "bin\Release\Storm.Dapper.Test.pdb".
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper.Test\Storm.Dapper.Test.csproj" (default targets).
+Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (1) is building "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\Storm.Cli.csproj" (9) on node 1 (default targets).
+RestorePackages:
+  "C:\Users\marcoo\Source\Repos\Storm\.nuget\NuGet.exe" install "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\packages.config" -source ""  -NonInteractive -RequireConsent -solutionDir "C:\Users\marcoo\Source\Repos\Storm\ "
+  Restoring NuGet packages...
+  To prevent NuGet from downloading packages during build, open the Visual Studio Options dialog, click on the Package Manager node and uncheck 'Allow NuGet to download missing packages'.
+  All packages listed in packages.config are already installed.
+PrepareForBuild:
+  Creating directory "obj\Release\".
+GenerateTargetFrameworkMonikerAttribute:
+Skipping target "GenerateTargetFrameworkMonikerAttribute" because all output files are up-to-date with respect to the input files.
+CoreCompile:
+  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Csc.exe /noconfig /nowarn:1701,1702 /nostdlib+ /platform:AnyCPU /errorreport:prompt /warn:4 /define:TRACE /highentropyva- /reference:C:\Users\marcoo\Source\Repos\Storm\packages\CommandLineParser.1.9.71\lib\net40\CommandLine.dll /reference:C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Flyingpie.Storm.Dapper.dll /reference:C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\Microsoft.CSharp.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.ComponentModel.DataAnnotations.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.DataSetExtensions.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /reference:"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.Linq.dll" /debug:pdbonly /filealign:512 /optimize+ /out:obj\Release\Flyingpie.Storm.Cli.exe /target:exe /utf8output Options.cs Program.cs Properties\AssemblyInfo.cs "C:\Users\marcoo\AppData\Local\Temp\.NETFramework,Version=v4.0.AssemblyAttributes.cs"
+_CopyFilesMarkedCopyLocal:
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\packages\CommandLineParser.1.9.71\lib\net40\CommandLine.dll" to "bin\Release\CommandLine.dll".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Flyingpie.Storm.Dapper.dll" to "bin\Release\Flyingpie.Storm.Dapper.dll".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.dll" to "bin\Release\Flyingpie.Storm.dll".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Dapper.dll" to "bin\Release\Dapper.dll".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Flyingpie.Storm.Dapper.pdb" to "bin\Release\Flyingpie.Storm.Dapper.pdb".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm\bin\Release\Flyingpie.Storm.pdb" to "bin\Release\Flyingpie.Storm.pdb".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\packages\CommandLineParser.1.9.71\lib\net40\CommandLine.xml" to "bin\Release\CommandLine.xml".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Dapper.pdb" to "bin\Release\Dapper.pdb".
+  Copying file from "C:\Users\marcoo\Source\Repos\Storm\Storm.Dapper\bin\Release\Dapper.xml" to "bin\Release\Dapper.xml".
+CopyFilesToOutputDirectory:
+  Copying file from "obj\Release\Flyingpie.Storm.Cli.exe" to "bin\Release\Flyingpie.Storm.Cli.exe".
+  Storm.Cli -> C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\bin\Release\Flyingpie.Storm.Cli.exe
+  Copying file from "obj\Release\Flyingpie.Storm.Cli.pdb" to "bin\Release\Flyingpie.Storm.Cli.pdb".
+PostBuildEvent:
+  "C:\Users\marcoo\Source\Repos\Storm\packages\ILRepack.1.25.0\tools\ILRepack.exe" /target:exe /out:stormcli.exe Flyingpie.Storm.Cli.exe CommandLine.dll Flyingpie.Storm.dll Flyingpie.Storm.Dapper.dll Dapper.dll
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.Cli\Storm.Cli.csproj" (default targets).
+Done Building Project "C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (default targets).
+
+Build succeeded.
+
+"C:\Users\marcoo\Source\Repos\Storm\Storm.sln" (default target) (1) ->
+"C:\Users\marcoo\Source\Repos\Storm\Storm\Storm.csproj" (default target) (2) ->
+(CoreCompile target) -> 
+  Generator.cs(15,32): warning CS0169: The field 'Flyingpie.Storm.Generator._generator' is never used [C:\Users\marcoo\Source\Repos\Storm\Storm\Storm.csproj]
+
+    1 Warning(s)
+    0 Error(s)
+
+Time Elapsed 00:00:07.02
+Buid successful
+Running unit tests...
+Microsoft (R) Test Execution Command Line Tool Version 11.0.60315.1
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Starting test execution, please wait...
+Passed   Select
+Passed   TestMethod1
+
+Total tests: 2. Passed: 2. Failed: 0. Skipped: 0.
+Test Run Successful.
+Test execution time: 0,2889 Seconds
+Unit test run successful
+Updating NuGet...
+Checking for updates from https://www.nuget.org/api/v2/.
+Currently running NuGet.exe 2.8.2.
+NuGet.exe is up to date.
+No version file found, using 1.0.0
+Attempting to build package from 'Storm.nuspec'.
+Successfully created package 'Release\Storm.1.0.0.nupkg'.
+Attempting to build package from 'Storm.Dapper.nuspec'.
+Successfully created package 'Release\Storm.Dapper.1.0.0.nupkg'.
+Attempting to build package from 'Storm.T4.nuspec'.
+Successfully created package 'Release\Storm.T4.1.0.0.nupkg'.
+Attempting to build package from 'Storm.Cli.nuspec'.
+Successfully created package 'Release\Storm.1.0.0.nupkg'.
+Done

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Storm.Cli</id>
+    <version>1.0.0</version>
+    <authors>Flyingpie</authors>
+    <owners>Flyingpie</owners>
+    <licenseUrl>https://github.com/FlyingPie/Storm/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/FlyingPie/Storm</projectUrl>
+    <iconUrl>https://avatars2.githubusercontent.com/u/1295673?s=460</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Automagically generate C# database layers for stored procedures</description>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Database ORM Stored Procedure</tags>
+  </metadata>
+  <files>
+    <file src="Storm.Cli\bin\Release\stormcli.exe" target="tools\stormcli.exe" />
+</files>
+</package>
