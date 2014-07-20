@@ -11,8 +11,8 @@ Automagically generate C# database layers for stored procedures. Generation can 
 
 ## Project Info
 
-* *Documentation*: "https://github.com/FlyingPie/Storm/wiki":https://github.com/FlyingPie/Storm/wiki
-* *Bugs and changes*: "https://github.com/FlyingPie/Storm/issues":https://github.com/FlyingPie/Storm/issues
+* *Documentation*: [https://github.com/FlyingPie/Storm/wiki](https://github.com/FlyingPie/Storm/wiki)
+* *Bugs and changes*: [https://github.com/FlyingPie/Storm/issues](https://github.com/FlyingPie/Storm/issues)
 
 ## Example
 
@@ -47,4 +47,4 @@ File.WriteAllText("DB.cs", code);
 
 ## License
 
-"MIT License":https://github.com/FlyingPie/Storm/blob/master/LICENSE
+[MIT License](https://github.com/FlyingPie/Storm/blob/master/LICENSE)
