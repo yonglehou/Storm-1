@@ -20,6 +20,9 @@ $root = (Get-Item $here).Parent.FullName
 # Project variables
 $unittestdll = "..\Storm.Test\bin\Release\Flyingpie.Storm.Test.dll"
 $versionfile = "version.txt"
+$releasefolder = "Release"
+
+$apikeyfile = "apikey.txt"
 
 CheckFile $msbuild
 CheckFile $vstest
@@ -55,11 +58,32 @@ if ($skipNuGetPackage -ne $true) {
 		$version = "1.0.0"
 	}
 	
-	& $nuget Pack "Storm.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
-	& $nuget Pack "Storm.Dapper.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
-	& $nuget Pack "Storm.T4.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
-	& $nuget Pack "Storm.Cli.nuspec" -OutputDirectory "Release" -Version $version -BasePath $root
+	& $nuget Pack "Storm.nuspec" -OutputDirectory $releasefolder -Version $version -BasePath $root
+	& $nuget Pack "Storm.Dapper.nuspec" -OutputDirectory $releasefolder -Version $version -BasePath $root
+	& $nuget Pack "Storm.T4.nuspec" -OutputDirectory $releasefolder -Version $version -BasePath $root
+	& $nuget Pack "Storm.Cli.nuspec" -OutputDirectory $releasefolder -Version $version -BasePath $root
 	CheckExitCode "NuGet Pack"
+	
+	if (Test-Path $apikeyfile) {
+		$doPublish = Read-Host "Publish to NuGet.org? (y/N)"
+		
+		if ($doPublish -eq "y")
+		{
+			$apiKey = Get-Content $apikeyfile
+			& $nuget SetApiKey $apiKey
+			
+			& $nuget Push "$releasefolder\Storm.$version.nupkg"
+			& $nuget Push "$releasefolder\Storm.Dapper.$version.nupkg"
+			& $nuget Push "$releasefolder\Storm.T4.$version.nupkg"
+			& $nuget Push "$releasefolder\Storm.Cli.$version.nupkg"
+			
+			CheckExitCode "NuGet Push"
+		} else {
+			Write-Host "Skipping publishment to NuGet.org"
+		}
+	} else {
+		Write-Host "No api key file found, skipping publish"
+	}
 } else {
 	Write-Host "Skipping creation of NuGet package" -f yellow
 }

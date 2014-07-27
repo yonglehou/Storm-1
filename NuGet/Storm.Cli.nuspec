@@ -9,12 +9,12 @@
     <projectUrl>https://github.com/FlyingPie/Storm</projectUrl>
     <iconUrl>https://avatars2.githubusercontent.com/u/1295673?s=460</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Automagically generate C# database layers for stored procedures</description>
+    <description>Command line runner for use with the Storm library</description>
     <releaseNotes></releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>Database ORM Stored Procedure</tags>
   </metadata>
   <files>
     <file src="Storm.Cli\bin\Release\stormcli.exe" target="tools\stormcli.exe" />
-</files>
+  </files>
 </package>
