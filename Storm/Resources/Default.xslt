@@ -37,7 +37,7 @@
     <!-- Interfaces -->
     #region Interfaces
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      public interface I<xsl:value-of select="Name" />
+      public interface <xsl:value-of select="InterfaceName" />
       {
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
         T <xsl:value-of select="Name" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse;
@@ -49,7 +49,7 @@
     #region Classes
     <!-- Classes -->
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      public class <xsl:value-of select="Name" /> : I<xsl:value-of select="Name" />
+      public class <xsl:value-of select="ClassName" /> : <xsl:value-of select="InterfaceName" />
       {
       private ISqlExecutor _executor;
 

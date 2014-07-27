@@ -1,6 +1,7 @@
 ﻿using Flyingpie.Storm.Utility;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
 {
@@ -11,7 +12,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return SqlConverter.ConvertSqlNameToClrName(Name); }
+            get { return Schema.Database.NameConverter.ConvertUserDefinedTypeToClass(Name); }
             set { /* Required for serialization */ }
         }
 
@@ -20,9 +21,15 @@ namespace Flyingpie.Storm.Model
 
         public List<UserDefinedTypeColumnInfo> Columns { get; set; }
 
+        [XmlIgnore]
+        public SchemaInfo Schema { get; set; }
+
         internal void Initialize(SchemaInfo schema)
         {
+            Schema = schema;
+
             Columns = schema.Database.UserDefinedTypeColumns.Where(udtc => udtc.SchemaName == SchemaName && udtc.UserDefinedTypeName == Name).ToList();
+            Columns.ForEach(c => c.Initialize(this));
         }
 
         public override string ToString()

@@ -4,13 +4,6 @@ namespace Flyingpie.Storm.Utility
 {
     public static class SqlConverter
     {
-        public static string ConvertSqlNameToClrName(string name)
-        {
-            name = name.Replace("@", "");
-
-            return name;
-        }
-
         public static string ConvertSqlTypeToClrType(string typeName, UserDefinedTypeInfo udt)
         {
             if (udt != null)

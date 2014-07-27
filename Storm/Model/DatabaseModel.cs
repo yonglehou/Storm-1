@@ -1,13 +1,18 @@
-﻿using Flyingpie.Storm.Utility;
+﻿using Flyingpie.Storm.NameConverters;
+using Flyingpie.Storm.Utility;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
 {
     public class DatabaseModel
     {
         public string RootNamespace { get; set; }
+
+        [XmlIgnore]
+        public INameConverter NameConverter { get; set; }
 
         public List<SchemaInfo> Schemas { get; private set; }
 
@@ -28,6 +33,8 @@ namespace Flyingpie.Storm.Model
         public DatabaseModel(string connectionString)
         {
             _connectionString = connectionString;
+
+            NameConverter = new DefaultNameConverter();
         }
 
         public void Initialize()

@@ -29,6 +29,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,6 +58,8 @@
     <Compile Include="Model\ParameterInfo.cs" />
     <Compile Include="Model\UserDefinedTypeColumnInfo.cs" />
     <Compile Include="Model\UserDefinedTypeInfo.cs" />
+    <Compile Include="NameConverters\DefaultNameConverter.cs" />
+    <Compile Include="NameConverters\INameConverter.cs" />
     <Compile Include="Resources\Xslt.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

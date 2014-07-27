@@ -1,6 +1,7 @@
 ﻿using Flyingpie.Storm.Utility;
 using System.Data;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
 {
@@ -17,7 +18,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return SqlConverter.ConvertSqlNameToClrName(Name); }
+            get { return StoredProcedure.Schema.Database.NameConverter.ConvertParameter(Name); }
             set { /* Required for serialization */ }
         }
 
@@ -72,8 +73,13 @@ namespace Flyingpie.Storm.Model
             set { /* Required for serialization */ }
         }
 
+        [XmlIgnore]
+        public StoredProcedureInfo StoredProcedure { get; set; }
+
         internal void Initialize(StoredProcedureInfo storedProcedure)
         {
+            StoredProcedure = storedProcedure;
+
             UserDefinedType = storedProcedure.Schema.Database.UserDefinedTypes.FirstOrDefault(udt => udt.SchemaName == UserDefinedTypeSchema && udt.Name == UserDefinedTypeName);
         }
 

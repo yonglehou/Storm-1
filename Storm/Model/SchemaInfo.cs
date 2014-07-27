@@ -12,6 +12,18 @@ namespace Flyingpie.Storm.Model
         [MapTo("SchemaName")]
         public string Name { get; set; }
 
+        public string ClassName
+        {
+            get { return Database.NameConverter.ConvertSchemaToClass(Name); }
+            set { /* Required for serialization */ }
+        }
+
+        public string InterfaceName
+        {
+            get { return Database.NameConverter.ConvertSchemaToInterface(Name); }
+            set { /* Required for serialization */}
+        }
+
         public List<StoredProcedureInfo> StoredProcedures { get; set; }
 
         public List<UserDefinedTypeInfo> UserDefinedTypes { get; set; }
