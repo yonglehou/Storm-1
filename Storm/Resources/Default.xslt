@@ -20,7 +20,7 @@
       namespace <xsl:value-of select="Name" />
       {
       <xsl:for-each select="UserDefinedTypes/UserDefinedTypeInfo">
-        public class <xsl:value-of select="NameClr" />
+        public partial class <xsl:value-of select="NameClr" />
         {
         <xsl:for-each select="Columns/UserDefinedTypeColumnInfo">
           <xsl:sort select="Id" />
@@ -49,7 +49,7 @@
     #region Classes
     <!-- Classes -->
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      public class <xsl:value-of select="ClassName" /> : <xsl:value-of select="InterfaceName" />
+      public partial class <xsl:value-of select="ClassName" /> : <xsl:value-of select="InterfaceName" />
       {
       private ISqlExecutor _executor;
 
@@ -59,7 +59,7 @@
       }
 
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
-        public T <xsl:value-of select="Name" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse
+        public virtual T <xsl:value-of select="Name" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse
         {
         var request = new SqlRequest("<xsl:value-of select="SchemaName" />", "<xsl:value-of select="Name" />");
         <xsl:for-each select="Parameters/ParameterInfo">
