@@ -22,7 +22,7 @@ namespace Flyingpie.Storm.Model
 
         public string TypeClr
         {
-            get { return SqlConverter.ConvertSqlTypeToClrType(Type, null); }
+            get { return UserDefinedType.Schema.Database.TypeConverter.ConvertSqlType(this); }
             set { /* Required for serialization */ }
         }
 

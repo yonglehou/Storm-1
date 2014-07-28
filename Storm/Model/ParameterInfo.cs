@@ -33,7 +33,7 @@ namespace Flyingpie.Storm.Model
 
         public string TypeClr
         {
-            get { return SqlConverter.ConvertSqlTypeToClrType(Type, UserDefinedType); }
+            get { return StoredProcedure.Schema.Database.TypeConverter.ConvertSqlType(this); }
             set { /* Required for serialization */ }
         }
 
@@ -70,7 +70,21 @@ namespace Flyingpie.Storm.Model
                         return ParameterDirection.Input;
                 }
             }
-            set { /* Required for serialization */ }
+            set
+            {
+                switch (value)
+                {
+                    case ParameterDirection.Input:
+                        Mode = "IN";
+                        break;
+                    case ParameterDirection.InputOutput:
+                        Mode = "INOUT";
+                        break;
+                    case ParameterDirection.Output:
+                        Mode = "OUT";
+                        break;
+                }
+            }
         }
 
         [XmlIgnore]
