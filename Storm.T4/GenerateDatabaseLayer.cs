@@ -13,6 +13,11 @@ namespace Database
 	{
 		namespace Orm
 		{
+			public partial class Vendor
+			{
+				public string Name { get; set; }
+				public string Description { get; set; }
+			}
 		}
 	}
 
@@ -22,14 +27,15 @@ namespace Database
 
 	public interface IOrm
 	{
-		T GetSmallTable<T>(string Description, string Name) where T : SqlResponse;
+		T GetSmallTable<T>(string name, string description) where T : SqlResponse;
+		T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse;
 	}
 
 	#endregion
 
 	#region Classes
 
-	public class Orm : IOrm
+	public partial class Orm : IOrm
 	{
 		private ISqlExecutor _executor;
 		public Orm(ISqlExecutor executor)
@@ -37,11 +43,19 @@ namespace Database
 			_executor = executor;
 		}
 
-		public T GetSmallTable<T>(string Description, string Name) where T : SqlResponse
+		public virtual T GetSmallTable<T>(string name, string description) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "GetSmallTable");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", ParameterDirection.Input, Description));
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", ParameterDirection.Input, Name));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", ParameterDirection.Input, description));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", ParameterDirection.Input, name));
+			var result = _executor.Execute<T>(request);
+			return result;
+		}
+
+		public virtual T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse
+		{
+			var request = new SqlRequest("Orm", "AddVendors");
+			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", ParameterDirection.Input, "Orm", "Vendor", vendors));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}

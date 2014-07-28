@@ -59,10 +59,12 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PreBuildEvent>xcopy /Y $(SolutionDir)packages\FluentMigrator.1.2.1.0\tools\Migrate.exe $(TargetDir)</PreBuildEvent>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>migrate.cmd</PostBuildEvent>
+    <PostBuildEvent>xcopy /Y "$(SolutionDir)packages\FluentMigrator.1.2.1.0\tools\Migrate.exe" "$(TargetDir)"
+migrate.cmd</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

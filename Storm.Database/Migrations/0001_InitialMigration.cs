@@ -49,22 +49,40 @@ namespace Storm.Database.Migrations
 		                AND
 		                (@Description IS NULL OR Description = Description)
                 END");
+
+            Execute.Sql(@"
+                CREATE TYPE Orm.Vendor AS TABLE
+                (
+                    Name        NVARCHAR(255),
+                    Description NVARCHAR(255)
+                )");
+
+            Execute.Sql(@"
+                CREATE PROCEDURE Orm.AddVendors
+                (
+                    @Vendors Orm.Vendor READONLY
+                )
+                AS
+                BEGIN
+                    INSERT INTO Orm.SmallTable
+                    (
+                        Name,
+                        Description
+                    )
+                    SELECT
+                        Name,
+                        Description
+                    FROM @Vendors
+                END");
         }
 
         public override void Down()
         {
-            Execute
-                .Sql(@"DROP PROCEDURE Orm.GetSmallTable")
-            ;
-
-            Delete
-                .Table("SmallTable")
-                .InSchema("Orm")
-            ;
-
-            Delete
-                .Schema("Orm")
-            ;
+            Execute.Sql("DROP PROCEDURE Orm.AddVendors");
+            Execute.Sql("DROP TYPE Orm.Vendor");
+            Execute.Sql("DROP PROCEDURE Orm.GetSmallTable");
+            Execute.Sql("DROP TABLE Orm.SmallTable");
+            Execute.Sql("DROP SCHEMA Orm");
         }
     }
 }

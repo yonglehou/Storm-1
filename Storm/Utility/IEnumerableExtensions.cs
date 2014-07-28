@@ -21,7 +21,8 @@ namespace Flyingpie.Storm.Utility
 
                     foreach (var prop in props)
                     {
-                        tb.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType));
+                        var t = Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType; // Get underlying type, should it be a nullable
+                        tb.Columns.Add(prop.Name, t);
                     }
                 }
 
