@@ -117,72 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ListParameters" xml:space="preserve">
-    <value>SELECT
-  p.SPECIFIC_SCHEMA AS SchemaName,
-  p.SPECIFIC_NAME AS StoredProcedureName,
-  p.PARAMETER_NAME AS ParameterName,
-  p.PARAMETER_MODE AS ParameterMode,
-  p.DATA_TYPE AS ParameterType,
-  p.USER_DEFINED_TYPE_SCHEMA AS UserDefinedTypeSchema,
-  p.USER_DEFINED_TYPE_NAME AS UserDefinedTypeName
-FROM INFORMATION_SCHEMA.ROUTINES r
-LEFT JOIN INFORMATION_SCHEMA.PARAMETERS p
-	ON r.SPECIFIC_SCHEMA = p.SPECIFIC_SCHEMA
-	AND r.SPECIFIC_NAME = p.SPECIFIC_NAME
-WHERE
-  p.SPECIFIC_NAME IS NOT NULL
-GROUP BY
-  p.SPECIFIC_SCHEMA,
-  p.SPECIFIC_NAME,
-  p.PARAMETER_NAME,
-  p.PARAMETER_MODE,
-  p.DATA_TYPE,
-  p.USER_DEFINED_TYPE_SCHEMA,
-  p.USER_DEFINED_TYPE_NAME</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ListParameters" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ListParameters.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="ListSchemas" xml:space="preserve">
-    <value>SELECT
-  s.schema_id  AS SchemaId,
-  s.name       AS SchemaName
-FROM sys.schemas s
-INNER JOIN INFORMATION_SCHEMA.ROUTINES r ON s.name = r.SPECIFIC_SCHEMA
-WHERE
-  r.ROUTINE_TYPE = 'PROCEDURE'
-GROUP BY
-  s.schema_id,
-  s.name</value>
+  <data name="ListSchemas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ListSchemas.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="ListStoredProcedures" xml:space="preserve">
-    <value>SELECT
-  r.SPECIFIC_NAME AS StoredProcedureName,
-  r.SPECIFIC_SCHEMA AS SchemaName
-FROM INFORMATION_SCHEMA.ROUTINES r
-WHERE
-  r.ROUTINE_TYPE = 'PROCEDURE'</value>
+  <data name="ListStoredProcedures" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ListStoredProcedures.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="ListUserDefinedTypeColumns" xml:space="preserve">
-    <value>SELECT
-  tt.name 'UserDefinedTypeName',
-  c.column_id 'ColumnId',
-  c.name 'ColumnName',
-  t.name 'ColumnType',
-  s.name 'SchemaName'
-FROM sys.table_types as tt
-INNER JOIN sys.columns as c
-  ON tt.type_table_object_id = c.object_id
-INNER JOIN sys.types t
-  ON c.system_type_id = t.system_type_id
-INNER JOIN sys.schemas s
-  ON tt.schema_id = s.schema_id
-WHERE t.name &lt;&gt; 'sysname'</value>
+  <data name="ListUserDefinedTypeColumns" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ListUserDefinedTypeColumns.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
-  <data name="ListUserDefinedTypes" xml:space="preserve">
-    <value>SELECT
-  tt.name 'UserDefinedTypeName',
-  s.name 'SchemaName'
-FROM sys.table_types as tt
-INNER JOIN sys.schemas s
-  ON tt.schema_id = s.schema_id</value>
+  <data name="ListUserDefinedTypes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>ListUserDefinedTypes.sql;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
 </root>

@@ -92,6 +92,21 @@
   <ItemGroup>
     <None Include="Resources\Default.xslt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListParameters.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListSchemas.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListStoredProcedures.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListUserDefinedTypeColumns.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ListUserDefinedTypes.sql" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -22,7 +22,7 @@ namespace Flyingpie.Storm.Model
             set { /* Required for serialization */ }
         }
 
-        //[MapTo("ParameterOrdinalPosition")]
+        [MapTo("ParameterPosition")]
         public int Position { get; set; }
 
         [MapTo("ParameterMode")]

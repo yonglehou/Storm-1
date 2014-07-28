@@ -22,9 +22,10 @@ namespace Flyingpie.Storm.Model
         {
             get
             {
-                return string.Join(", ", Parameters.Select(p =>
-                    (p.ParameterModeEnum == ParameterDirection.Input ? "" : "ref ") +
-                    p.TypeClr + " " + p.NameClr).ToArray());
+                return string.Join(", ", Parameters
+                    .OrderBy(p => p.Position)
+                    .Select(p => p.TypeClr + " " + p.NameClr).
+                    ToArray());
             }
             set { /* Required for serialization */ }
         }
