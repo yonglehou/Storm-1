@@ -40,7 +40,7 @@
       public interface <xsl:value-of select="InterfaceName" />
       {
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
-        T <xsl:value-of select="Name" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse;
+        T <xsl:value-of select="NameClr" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse;
       </xsl:for-each>
       }
     </xsl:for-each>
@@ -53,13 +53,13 @@
       {
       private ISqlExecutor _executor;
 
-      public <xsl:value-of select="Name" />(ISqlExecutor executor)
+      public <xsl:value-of select="ClassName" />(ISqlExecutor executor)
       {
       _executor = executor;
       }
 
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
-        public virtual T <xsl:value-of select="Name" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse
+        public virtual T <xsl:value-of select="NameClr" /><xsl:text disable-output-escaping="yes">&lt;T&gt;</xsl:text>(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />) where T : SqlResponse
         {
         var request = new SqlRequest("<xsl:value-of select="SchemaName" />", "<xsl:value-of select="Name" />");
         <xsl:for-each select="Parameters/ParameterInfo">

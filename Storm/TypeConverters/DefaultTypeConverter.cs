@@ -8,7 +8,7 @@ namespace Flyingpie.Storm.TypeConverters
 {
     public class DefaultTypeConverter : ITypeConverter
     {
-        public string ConvertSqlType(ParameterInfo parameter)
+        public string ConvertSqlType(ParameterInfo parameter, bool includeReferenceKeyword)
         {
             if (parameter.HasUserDefinedType)
             {
@@ -19,20 +19,23 @@ namespace Flyingpie.Storm.TypeConverters
             {
                 var typeName = GetBaseType(parameter.Type);
 
-                switch (parameter.ParameterModeEnum)
+                if (includeReferenceKeyword)
                 {
-                    case System.Data.ParameterDirection.Input:
-                        // Do nothing
-                        break;
-                    case System.Data.ParameterDirection.InputOutput:
-                        typeName = "ref " + typeName;
-                        break;
-                    case System.Data.ParameterDirection.Output:
-                        typeName = "out " + typeName;
-                        break;
-                    case System.Data.ParameterDirection.ReturnValue:
-                        // Do nothing
-                        break;
+                    switch (parameter.ParameterModeEnum)
+                    {
+                        case System.Data.ParameterDirection.Input:
+                            // Do nothing
+                            break;
+                        case System.Data.ParameterDirection.InputOutput:
+                            typeName = "ref " + typeName;
+                            break;
+                        case System.Data.ParameterDirection.Output:
+                            typeName = "out " + typeName;
+                            break;
+                        case System.Data.ParameterDirection.ReturnValue:
+                            // Do nothing
+                            break;
+                    }
                 }
 
                 return typeName;

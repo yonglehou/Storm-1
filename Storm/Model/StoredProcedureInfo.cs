@@ -10,6 +10,12 @@ namespace Flyingpie.Storm.Model
         [MapTo("StoredProcedureName")]
         public string Name { get; set; }
 
+        public string NameClr
+        {
+            get { return Schema.Database.NameConverter.ConvertStoredProcedureToMethod(Name); }
+            set { /* Required for serialization */ }
+        }
+
         [MapTo("SchemaName")]
         public string SchemaName { get; set; }
 
@@ -24,7 +30,7 @@ namespace Flyingpie.Storm.Model
             {
                 return string.Join(", ", Parameters
                     .OrderBy(p => p.Position)
-                    .Select(p => p.TypeClr + " " + p.NameClr).
+                    .Select(p => p.TypeRefClr + " " + p.NameClr).
                     ToArray());
             }
             set { /* Required for serialization */ }

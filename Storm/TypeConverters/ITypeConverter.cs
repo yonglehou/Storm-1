@@ -8,7 +8,7 @@ namespace Flyingpie.Storm.TypeConverters
 {
     public interface ITypeConverter
     {
-        string ConvertSqlType(ParameterInfo parameter);
+        string ConvertSqlType(ParameterInfo parameter, bool includeReferenceKeyword);
         string ConvertSqlType(UserDefinedTypeColumnInfo column);
     }
 }
