@@ -107,7 +107,7 @@ namespace Flyingpie.Storm.Test.TypeConverters
             {
                 Type = typeName,
                 ParameterModeEnum = direction
-            });
+            }, true);
         }
     }
 }
