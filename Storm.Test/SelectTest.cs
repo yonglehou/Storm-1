@@ -40,7 +40,23 @@ namespace Storm.Test
         [TestMethod]
         public void Update()
         {
-            _orm.AddVendors<SqlResponse>(new List<Vendor>() { new Vendor() { Name = "a", Description = "b" } });
+            var vendor1 = new Vendor() { Name = "Vendor1", Description = "Vendor1 description" };
+            var vendor2 = new Vendor() { Name = "Vendor2", Description = "Vendor2 description" };
+
+            using (var transaction = _executor.BeginTransaction())
+            {
+                var vendorsBefore = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+
+                Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor1.Name && v.Description == vendor1.Description));
+                Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
+
+                _orm.AddVendors<SqlResponse>(new List<Vendor>() { vendor1, vendor2 });
+
+                var vendorsAfter = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+
+                Assert.IsTrue(vendorsAfter.Items.Any(v => v.Name == vendor1.Name && v.Description == vendor1.Description));
+                Assert.IsTrue(vendorsAfter.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
+            }
         }
 
         [TestMethod]
@@ -50,15 +66,38 @@ namespace Storm.Test
         }
 
         [TestMethod]
-        public void TransactionRollback()
+        public void TransactionRollbackMultiple()
         {
+            var vendor1 = new Vendor() { Name = "Vendor1", Description = "Vendor1 description" };
+            var vendor2 = new Vendor() { Name = "Vendor2", Description = "Vendor2 description" };
+            var vendor3 = new Vendor() { Name = "Vendor3", Description = "Vendor3 description" };
 
-        }
+            using (var transaction = _executor.BeginTransaction())
+            {
+                _orm.AddVendors<SqlResponse>(new List<Vendor>() { vendor1 });
+                transaction.Rollback();
+            }
 
-        [TestMethod]
-        public void TransactionCommit()
-        {
+            var result = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+            Assert.IsFalse(result.Items.Any(i => i.Name == vendor1.Name && i.Description == vendor1.Description));
 
+            using (var transaction = _executor.BeginTransaction())
+            {
+                _orm.AddVendors<SqlResponse>(new List<Vendor>() { vendor2 });
+                transaction.Rollback();
+            }
+
+            var result2 = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+            Assert.IsFalse(result.Items.Any(i => i.Name == vendor2.Name && i.Description == vendor2.Description));
+
+            using (var transaction = _executor.BeginTransaction())
+            {
+                _orm.AddVendors<SqlResponse>(new List<Vendor>() { vendor3 });
+                transaction.Rollback();
+            }
+
+            var result3 = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+            Assert.IsFalse(result.Items.Any(i => i.Name == vendor3.Name && i.Description == vendor3.Description));
         }
     }
 }
