@@ -99,5 +99,41 @@ namespace Storm.Test
             var result3 = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
             Assert.IsFalse(result.Items.Any(i => i.Name == vendor3.Name && i.Description == vendor3.Description));
         }
+
+        [TestMethod]
+        public void TransactionException()
+        {
+            bool isExceptionThrown = false;
+
+            var vendorCountBefore = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null).Items.Count();
+
+            try
+            {
+                using (var transaction = _executor.BeginTransaction())
+                {
+                    _orm.AddVendors<SqlResponse>(new List<Vendor>() { new Vendor()
+                    {
+                        Name = "From Exception",
+                        Description = "Description"
+                    }});
+
+                    var vendorCountTransaction = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null).Items.Count();
+
+                    Assert.AreEqual(vendorCountBefore + 1, vendorCountTransaction);
+
+                    throw new InvalidOperationException();
+                }
+            }
+            catch (InvalidOperationException e)
+            {
+                isExceptionThrown = true;
+            }
+
+            Assert.IsTrue(isExceptionThrown);
+
+            var vendorCountAfter = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null).Items.Count();
+
+            Assert.AreEqual(vendorCountBefore, vendorCountAfter);
+        }
     }
 }

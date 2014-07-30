@@ -157,7 +157,8 @@ namespace Flyingpie.Storm.Dapper
 
                 if (table != null)
                 {
-                    parameters.Add(table.Name, table.Table.ToDataTable(string.Format("{0}.{1}", table.SchemaName, table.UdtName)));
+                    var typeName = string.Format("{0}.{1}", table.SchemaName, table.UdtName);
+                    parameters.Add(table.Name, table.Table.ToDataTable(typeName).AsTableValuedParameter(typeName));
                     continue;
                 }
 
