@@ -126,6 +126,92 @@ namespace Flyingpie.Storm.Dapper
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(result1, result2, result3);
         }
 
+        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> Query<T1, T2, T3, T4>(SqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
+
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+            var result3 = results.Read<T3>();
+            var result4 = results.Read<T4>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>>(result1, result2, result3, result4);
+        }
+
+        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> Query<T1, T2, T3, T4, T5>(SqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
+
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+            var result3 = results.Read<T3>();
+            var result4 = results.Read<T4>();
+            var result5 = results.Read<T5>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>>(result1, result2, result3, result4, result5);
+        }
+
+        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> Query<T1, T2, T3, T4, T5, T6>(SqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
+
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+            var result3 = results.Read<T3>();
+            var result4 = results.Read<T4>();
+            var result5 = results.Read<T5>();
+            var result6 = results.Read<T6>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>>(result1, result2, result3, result4, result5, result6);
+        }
+
+        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> Query<T1, T2, T3, T4, T5, T6, T7>(SqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var results = _connection.QueryMultiple(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure,
+                transaction: _transaction);
+
+            var result1 = results.Read<T1>();
+            var result2 = results.Read<T2>();
+            var result3 = results.Read<T3>();
+            var result4 = results.Read<T4>();
+            var result5 = results.Read<T5>();
+            var result6 = results.Read<T6>();
+            var result7 = results.Read<T7>();
+
+            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>>(result1, result2, result3, result4, result5, result6, result7);
+        }
+
         private void CreateConnection()
         {
             if (_connection == null || _connection.State == ConnectionState.Closed || _connection.State == ConnectionState.Broken)
