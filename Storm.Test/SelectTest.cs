@@ -66,6 +66,15 @@ namespace Storm.Test
         }
 
         [TestMethod]
+        public void EmptyTableValuedParameter()
+        {
+            using(var transaction = _executor.BeginTransaction())
+            {
+                _orm.AddVendors<SqlResponse>(new List<Vendor>());
+            }
+        }
+
+        [TestMethod]
         public void Scalar()
         {
             var a = 1;
