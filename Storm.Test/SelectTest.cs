@@ -46,7 +46,7 @@ namespace Storm.Test
             using (var transaction = _executor.BeginTransaction())
             {
                 var vendorsBefore = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
-
+                
                 Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor1.Name && v.Description == vendor1.Description));
                 Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
 
@@ -63,6 +63,17 @@ namespace Storm.Test
         public void TableValuedParameter()
         {
 
+        }
+
+        [TestMethod]
+        public void Scalar()
+        {
+            var a = 1;
+            var b = 2;
+
+            var c = _orm.GetScalar<SqlResponseScalar>(a, b);
+
+            Assert.AreEqual(a + b, c.Result);
         }
 
         [TestMethod]

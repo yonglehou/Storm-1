@@ -64,14 +64,14 @@ namespace Flyingpie.Storm.Dapper
 
             var parameters = CreateParameters(request);
 
-            var result = _connection.Execute(
+            var result = _connection.Query<int>(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
                 commandType: CommandType.StoredProcedure, transaction: _transaction);
 
             FetchParameterValue(request, parameters);
 
-            return result;
+            return result.Any() ? result.First() : -1;
         }
 
         public IEnumerable<T> Query<T>(SqlRequest request)

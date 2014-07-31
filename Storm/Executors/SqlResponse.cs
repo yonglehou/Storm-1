@@ -10,6 +10,16 @@ namespace Flyingpie.Storm.Executors
         }
     }
 
+    public class SqlResponseScalar : SqlResponse
+    {
+        public int Result { get; set; }
+
+        public override void Execute(SqlRequest request, ISqlExecutor executor)
+        {
+            Result = executor.Query(request);
+        }
+    }
+
     public class SqlResponse<T> : SqlResponse
     {
         public IEnumerable<T> Items { get; set; }

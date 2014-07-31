@@ -74,10 +74,24 @@ namespace Storm.Database.Migrations
                         Description
                     FROM @Vendors
                 END");
+
+            Execute.Sql(@"
+                CREATE PROCEDURE Orm.GetScalar
+                (
+                    @ValueA     INT,
+                    @ValueB     INT
+                )
+                AS
+                BEGIN
+                    SELECT @ValueA + @ValueB;
+
+                    RETURN
+                END");
         }
 
         public override void Down()
         {
+            Execute.Sql("DROP PROCEDURE Orm.GetScalar");
             Execute.Sql("DROP PROCEDURE Orm.AddVendors");
             Execute.Sql("DROP TYPE Orm.Vendor");
             Execute.Sql("DROP PROCEDURE Orm.GetSmallTable");

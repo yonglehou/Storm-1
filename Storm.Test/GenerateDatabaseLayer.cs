@@ -13,7 +13,7 @@ namespace Database
 	{
 		namespace Orm
 		{
-			public partial class Vendor
+			public class Vendor
 			{
 				public string Name { get; set; }
 				public string Description { get; set; }
@@ -27,15 +27,16 @@ namespace Database
 
 	public interface IOrm
 	{
-		T GetSmallTable<T>(string name, string description) where T : SqlResponse;
-		T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse;
+		T GetSmallTable<T>(string Description, string Name) where T : SqlResponse;
+		T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> Vendors) where T : SqlResponse;
+		T GetScalar<T>(int? ValueA, int? ValueB) where T : SqlResponse;
 	}
 
 	#endregion
 
 	#region Classes
 
-	public partial class Orm : IOrm
+	public class Orm : IOrm
 	{
 		private ISqlExecutor _executor;
 		public Orm(ISqlExecutor executor)
@@ -43,19 +44,28 @@ namespace Database
 			_executor = executor;
 		}
 
-		public virtual T GetSmallTable<T>(string name, string description) where T : SqlResponse
+		public T GetSmallTable<T>(string Description, string Name) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "GetSmallTable");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", ParameterDirection.Input, description));
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", ParameterDirection.Input, name));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", ParameterDirection.Input, Description));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", ParameterDirection.Input, Name));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
 
-		public virtual T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse
+		public T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> Vendors) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "AddVendors");
-			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", ParameterDirection.Input, "Orm", "Vendor", vendors));
+			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", ParameterDirection.Input, "Orm", "Vendor", Vendors));
+			var result = _executor.Execute<T>(request);
+			return result;
+		}
+
+		public T GetScalar<T>(int? ValueA, int? ValueB) where T : SqlResponse
+		{
+			var request = new SqlRequest("Orm", "GetScalar");
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueA", ParameterDirection.Input, ValueA));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueB", ParameterDirection.Input, ValueB));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
