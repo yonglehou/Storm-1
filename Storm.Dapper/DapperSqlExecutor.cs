@@ -10,7 +10,7 @@ using System.Linq;
 
 namespace Flyingpie.Storm.Dapper
 {
-    public class DapperSqlExecutor : ISqlExecutor
+    public class DapperSqlExecutor : ISqlExecutor, IDisposable
     {
         public string ConnectionString { get; private set; }
 
@@ -276,6 +276,15 @@ namespace Flyingpie.Storm.Dapper
                 }
             }
              */
+        }
+
+        public void Dispose()
+        {
+            if (_connection != null)
+            {
+                _connection.Close();
+                _connection.Dispose();
+            }
         }
     }
 }
