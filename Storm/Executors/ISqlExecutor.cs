@@ -4,7 +4,7 @@ using System.Data;
 
 namespace Flyingpie.Storm.Executors
 {
-    public interface ISqlExecutor
+    public interface ISqlExecutor : IDisposable
     {
         T Execute<T>(SqlRequest request) where T : SqlResponse;
 
