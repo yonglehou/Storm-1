@@ -54,7 +54,9 @@ namespace Storm.Database.Migrations
                 CREATE TYPE Orm.Vendor AS TABLE
                 (
                     Name        NVARCHAR(255),
-                    Description NVARCHAR(255)
+                    Description NVARCHAR(255),
+                    HorsePower  INT,
+                    Image       VARBINARY(1024)
                 )");
 
             Execute.Sql(@"

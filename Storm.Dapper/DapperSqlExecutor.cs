@@ -214,6 +214,7 @@ namespace Flyingpie.Storm.Dapper
 
         private void CreateConnection()
         {
+            // The connection seems to be null every time and it needs to be opened every request, not very speedy
             if (_connection == null || _connection.State == ConnectionState.Closed || _connection.State == ConnectionState.Broken)
             {
                 _connection = new SqlConnection(ConnectionString);

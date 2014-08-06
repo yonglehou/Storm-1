@@ -40,8 +40,8 @@ namespace Storm.Test
         [TestMethod]
         public void Update()
         {
-            var vendor1 = new Vendor() { Name = "Vendor1", Description = "Vendor1 description" };
-            var vendor2 = new Vendor() { Name = "Vendor2", Description = "Vendor2 description" };
+            var vendor1 = new Vendor() { Name = "Vendor1", Description = "Vendor1 description", HorsePower = 120, Image = new byte[] { 0x01, 0x02 } };
+            var vendor2 = new Vendor() { Name = "Vendor2", Description = "Vendor2 description", HorsePower = 140, Image = new byte[] { 0x01, 0x02 } };
 
             using (var transaction = _executor.BeginTransaction())
             {
@@ -51,6 +51,40 @@ namespace Storm.Test
                 Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
 
                 _orm.AddVendors<SqlResponse>(new List<Vendor>() { vendor1, vendor2 });
+
+                var vendorsAfter = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+
+                Assert.IsTrue(vendorsAfter.Items.Any(v => v.Name == vendor1.Name && v.Description == vendor1.Description));
+                Assert.IsTrue(vendorsAfter.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
+            }
+        }
+
+        [TestMethod]
+        public void UpdateDelayed()
+        {
+            // We've encountered an issue where the executor threw the exception 'Object does not match target type', which disappeared after adding ToList()
+            var vendor1 = new Vendor() { Name = "Vendor1", Description = "Vendor1 description", HorsePower = 120, Image = new byte[] { 0x01, 0x02 } };
+            var vendor2 = new Vendor() { Name = "Vendor2", Description = "Vendor2 description", HorsePower = 140, Image = new byte[] { 0x01, 0x02 } };
+            var vendors = new List<Vendor>()
+            {
+                vendor1,
+                vendor2
+            };
+
+            using (var transaction = _executor.BeginTransaction())
+            {
+                var vendorsBefore = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
+
+                Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor1.Name && v.Description == vendor1.Description));
+                Assert.IsFalse(vendorsBefore.Items.Any(v => v.Name == vendor2.Name && v.Description == vendor2.Description));
+
+                _orm.AddVendors<SqlResponse>(vendors.Select(v => new Vendor()
+                {
+                    Description = v.Description,
+                    HorsePower = v.HorsePower,
+                    Image = v.Image,
+                    Name = v.Name
+                }));
 
                 var vendorsAfter = _orm.GetSmallTable<SqlResponse<SmallTableRow>>(null, null);
 
