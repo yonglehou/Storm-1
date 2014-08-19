@@ -65,9 +65,9 @@
       <DependentUpon>GenerateDatabaseLayer.tt</DependentUpon>
     </Compile>
     <Compile Include="Converters\DefaultNameConverterTest.cs" />
-    <Compile Include="SelectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Converters\DefaultTypeConverterTest.cs" />
+    <Compile Include="SelectTest.cs" />
     <Compile Include="Utility\IEnumerableExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>

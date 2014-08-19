@@ -3,17 +3,32 @@ using Flyingpie.Storm.Utility;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Reflection;
 using System.Xml.Serialization;
 
 namespace Flyingpie.Storm.Model
 {
     public class DatabaseModel
     {
+        // Maybe put these in a seperate class
         public string RootNamespace
         {
             get { return GeneratorConfiguration.Instance.RootNamespace; }
             set { /* Required for serialization */ }
         }
+
+        public string LibraryName
+        {
+            get { return GeneratorConfiguration.Instance.LibraryName; }
+            set { /* Required for serialization */ }
+        }
+
+        public string LibraryVersion
+        {
+            get { return GeneratorConfiguration.Instance.LibraryVersion; }
+            set { /* Required for serialization */ }
+        }
+        // Until here
 
         public List<SchemaInfo> Schemas { get; private set; }
 

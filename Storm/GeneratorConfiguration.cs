@@ -18,12 +18,19 @@ namespace Flyingpie.Storm
         private GeneratorConfiguration()
         {
             // Defaults
+            LibraryName = "Flyingpie.Storm";
+            LibraryVersion = GetType().Assembly.GetName().Version.ToString();
+
             RootNamespace = "Database";
 
             NameConverter = new DefaultNameConverter();
             TypeConverter = new DefaultTypeConverter();
             ValueConverter = new DefaultValueConverter();
         }
+
+        public string LibraryName { get; set; }
+
+        public string LibraryVersion { get; set; }
 
         public string RootNamespace { get; set; }
 

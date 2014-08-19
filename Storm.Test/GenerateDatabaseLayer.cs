@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace Database
 	{
 		namespace Orm
 		{
+			[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
 			public partial class Vendor
 			{
 				public string Name { get; set; }
@@ -27,6 +29,7 @@ namespace Database
 
 	#region Interfaces
 
+	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
 	public interface IOrm
 	{
 		T GetSmallTable<T>(string name, string description) where T : SqlResponse;
@@ -39,6 +42,7 @@ namespace Database
 
 	#region Classes
 
+	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
 	public partial class Orm : IOrm
 	{
 		private ISqlExecutor _executor;
