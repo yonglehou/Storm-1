@@ -17,7 +17,7 @@
     namespace UserDefinedTypes
     {
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      namespace <xsl:value-of select="Name" />
+      namespace <xsl:value-of select="NamespaceName" />
       {
       <xsl:for-each select="UserDefinedTypes/UserDefinedTypeInfo">
         public partial class <xsl:value-of select="NameClr" />

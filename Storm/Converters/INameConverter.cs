@@ -11,6 +11,8 @@ namespace Flyingpie.Storm.Converters
         
         string ConvertSchemaToClass(string name);
 
+        string ConvertSchemaToNamespace(string name);
+
         string ConvertStoredProcedureToMethod(string name);
 
         string ConvertParameter(string name);

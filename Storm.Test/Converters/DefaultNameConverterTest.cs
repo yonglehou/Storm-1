@@ -37,6 +37,15 @@ namespace Flyingpie.Storm.Test.Converters
         }
 
         [TestMethod]
+        public void ConvertSchemaToNamespaceTest()
+        {
+            Assert.AreEqual("Dbo", _nameConverter.ConvertSchemaToNamespace("dbo"));
+            Assert.AreEqual("Orm", _nameConverter.ConvertSchemaToNamespace("orm"));
+            Assert.AreEqual("A", _nameConverter.ConvertSchemaToNamespace("a"));
+            Assert.AreEqual("SchemaName", _nameConverter.ConvertSchemaToNamespace("SchemaName"));
+        }
+
+        [TestMethod]
         public void ConvertStoredProcedureToMethodTest()
         {
             Assert.AreEqual("GetVendors", _nameConverter.ConvertStoredProcedureToMethod("get_vendors"));

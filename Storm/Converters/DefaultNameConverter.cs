@@ -21,6 +21,13 @@ namespace Flyingpie.Storm.Converters
             return Capitalize(name);
         }
 
+        public virtual string ConvertSchemaToNamespace(string name)
+        {
+            name = name.Replace("@", "");
+
+            return Capitalize(name);
+        }
+
         public virtual string ConvertStoredProcedureToMethod(string name)
         {
             name = name.Replace("@", "");

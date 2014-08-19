@@ -24,6 +24,12 @@ namespace Flyingpie.Storm.Model
             set { /* Required for serialization */}
         }
 
+        public string NamespaceName
+        {
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertSchemaToNamespace(Name); }
+            set { /* Required for serialization */ }
+        }
+
         public List<StoredProcedureInfo> StoredProcedures { get; set; }
 
         public List<UserDefinedTypeInfo> UserDefinedTypes { get; set; }
