@@ -13,7 +13,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return UserDefinedType.Schema.Database.NameConverter.ConvertColumnToProperty(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertColumnToProperty(Name); }
             set { /* Required for serialization */ }
         }
 
@@ -22,7 +22,7 @@ namespace Flyingpie.Storm.Model
 
         public string TypeClr
         {
-            get { return UserDefinedType.Schema.Database.TypeConverter.ConvertSqlType(this); }
+            get { return GeneratorConfiguration.Instance.TypeConverter.ConvertSqlType(this); }
             set { /* Required for serialization */ }
         }
 

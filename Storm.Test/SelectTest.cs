@@ -189,5 +189,16 @@ namespace Storm.Test
 
             Assert.AreEqual(vendorCountBefore, vendorCountAfter);
         }
+
+        [TestMethod]
+        public void DateTimePrecision()
+        {
+            var input = new DateTime(2014, 10, 16, 11, 30, 2, 232);
+            input = input.AddTicks(123456789);
+            
+            var output = _orm.EchoDateTime<SqlResponse<DateTime>>(input).Items.First();
+
+            Assert.AreEqual(input, output);
+        }
     }
 }

@@ -12,7 +12,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return Schema.Database.NameConverter.ConvertStoredProcedureToMethod(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertStoredProcedureToMethod(Name); }
             set { /* Required for serialization */ }
         }
 

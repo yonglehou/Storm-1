@@ -89,10 +89,22 @@ namespace Storm.Database.Migrations
 
                     RETURN
                 END");
+
+            Execute.Sql(@"
+                CREATE PROCEDURE Orm.EchoDateTime
+                (
+                    @DateTime   DATETIME2
+                )
+                AS
+                BEGIN
+                    SELECT @DateTime;
+                    RETURN;
+                END");
         }
 
         public override void Down()
         {
+            Execute.Sql("DROP PROCEDURE Orm.EchoDateTime");
             Execute.Sql("DROP PROCEDURE Orm.GetScalar");
             Execute.Sql("DROP PROCEDURE Orm.AddVendors");
             Execute.Sql("DROP TYPE Orm.Vendor");

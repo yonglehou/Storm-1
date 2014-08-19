@@ -50,7 +50,7 @@ namespace Flyingpie.Storm.Executors
         {
             Name = name;
             Mode = mode;
-            Value = value;
+            Value = GeneratorConfiguration.Instance.ValueConverter.Convert(value);
         }
 
         public object Value { get; set; }

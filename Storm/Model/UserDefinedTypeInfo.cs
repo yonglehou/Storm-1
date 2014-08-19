@@ -12,7 +12,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return Schema.Database.NameConverter.ConvertUserDefinedTypeToClass(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertUserDefinedTypeToClass(Name); }
             set { /* Required for serialization */ }
         }
 

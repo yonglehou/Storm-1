@@ -46,6 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CodeGenerators\ICodeGenerator.cs" />
+    <Compile Include="Converters\DefaultValueConverter.cs" />
+    <Compile Include="Converters\IValueConverter.cs" />
     <Compile Include="Formatters\DefaultCodeFormatter.cs" />
     <Compile Include="Formatters\ICodeFormatter.cs" />
     <Compile Include="CodeGenerators\XsltCodeGenerator.cs" />
@@ -53,19 +55,20 @@
     <Compile Include="Executors\SqlRequest.cs" />
     <Compile Include="Executors\SqlResponse.cs" />
     <Compile Include="Generator.cs" />
+    <Compile Include="GeneratorConfiguration.cs" />
     <Compile Include="Model\MapToAttribute.cs" />
     <Compile Include="Model\ParameterInfo.cs" />
     <Compile Include="Model\UserDefinedTypeColumnInfo.cs" />
     <Compile Include="Model\UserDefinedTypeInfo.cs" />
-    <Compile Include="NameConverters\DefaultNameConverter.cs" />
-    <Compile Include="NameConverters\INameConverter.cs" />
+    <Compile Include="Converters\DefaultNameConverter.cs" />
+    <Compile Include="Converters\INameConverter.cs" />
     <Compile Include="Resources\Xslt.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Xslt.resx</DependentUpon>
     </Compile>
-    <Compile Include="TypeConverters\DefaultTypeConverter.cs" />
-    <Compile Include="TypeConverters\ITypeConverter.cs" />
+    <Compile Include="Converters\DefaultTypeConverter.cs" />
+    <Compile Include="Converters\ITypeConverter.cs" />
     <Compile Include="Utility\IEnumerableExtensions.cs" />
     <Compile Include="Utility\SqlUtil.cs" />
     <Compile Include="Model\DatabaseModel.cs" />

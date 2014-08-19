@@ -14,13 +14,13 @@ namespace Flyingpie.Storm.Model
 
         public string ClassName
         {
-            get { return Database.NameConverter.ConvertSchemaToClass(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertSchemaToClass(Name); }
             set { /* Required for serialization */ }
         }
 
         public string InterfaceName
         {
-            get { return Database.NameConverter.ConvertSchemaToInterface(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertSchemaToInterface(Name); }
             set { /* Required for serialization */}
         }
 

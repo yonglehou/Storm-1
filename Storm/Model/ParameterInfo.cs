@@ -18,7 +18,7 @@ namespace Flyingpie.Storm.Model
 
         public string NameClr
         {
-            get { return StoredProcedure.Schema.Database.NameConverter.ConvertParameter(Name); }
+            get { return GeneratorConfiguration.Instance.NameConverter.ConvertParameter(Name); }
             set { /* Required for serialization */ }
         }
 
@@ -33,13 +33,13 @@ namespace Flyingpie.Storm.Model
 
         public string TypeClr
         {
-            get { return StoredProcedure.Schema.Database.TypeConverter.ConvertSqlType(this, false); }
+            get { return GeneratorConfiguration.Instance.TypeConverter.ConvertSqlType(this, false); }
             set { /* Required for serialization */ }
         }
 
         public string TypeRefClr
         {
-            get { return StoredProcedure.Schema.Database.TypeConverter.ConvertSqlType(this, true); }
+            get { return GeneratorConfiguration.Instance.TypeConverter.ConvertSqlType(this, true); }
             set { /* Required for serialization */ }
         }
 

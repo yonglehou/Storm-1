@@ -1,11 +1,11 @@
-﻿using Flyingpie.Storm.NameConverters;
+﻿using Flyingpie.Storm.Converters;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Flyingpie.Storm.Test.NameConverters
+namespace Flyingpie.Storm.Test.Converters
 {
     [TestClass]
     public class DefaultNameConverterTest

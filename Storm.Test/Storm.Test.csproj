@@ -57,16 +57,17 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Converters\DefaultValueConverterTest.cs" />
     <Compile Include="Dto\SmallTableRow.cs" />
     <Compile Include="GenerateDatabaseLayer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>GenerateDatabaseLayer.tt</DependentUpon>
     </Compile>
-    <Compile Include="NameConverters\DefaultNameConverterTest.cs" />
+    <Compile Include="Converters\DefaultNameConverterTest.cs" />
     <Compile Include="SelectTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypeConverters\DefaultTypeConverterTest.cs" />
+    <Compile Include="Converters\DefaultTypeConverterTest.cs" />
     <Compile Include="Utility\IEnumerableExtensionsTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -91,6 +92,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Model\" />
+    <Folder Include="NameConverters\" />
+    <Folder Include="TypeConverters\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

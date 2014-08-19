@@ -1,5 +1,4 @@
-﻿using Flyingpie.Storm.NameConverters;
-using Flyingpie.Storm.TypeConverters;
+﻿using Flyingpie.Storm.Converters;
 using Flyingpie.Storm.Utility;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -10,15 +9,11 @@ namespace Flyingpie.Storm.Model
 {
     public class DatabaseModel
     {
-        //TODO: Move these to a configuration object
-        public string RootNamespace { get; set; }
-
-        [XmlIgnore]
-        public INameConverter NameConverter { get; set; }
-
-        [XmlIgnore]
-        public ITypeConverter TypeConverter { get; set; }
-        // Until here
+        public string RootNamespace
+        {
+            get { return GeneratorConfiguration.Instance.RootNamespace; }
+            set { /* Required for serialization */ }
+        }
 
         public List<SchemaInfo> Schemas { get; private set; }
 
@@ -39,9 +34,6 @@ namespace Flyingpie.Storm.Model
         public DatabaseModel(string connectionString)
         {
             _connectionString = connectionString;
-
-            NameConverter = new DefaultNameConverter();
-            TypeConverter = new DefaultTypeConverter();
         }
 
         public void Initialize()

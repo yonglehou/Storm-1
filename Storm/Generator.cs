@@ -35,7 +35,6 @@ namespace Flyingpie.Storm
         {
             // Generate database model
             var model = new DatabaseModel(_connectionString);
-            model.RootNamespace = "Database";
             model.Initialize();
 
             // Generate code
