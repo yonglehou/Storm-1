@@ -13,7 +13,9 @@ namespace Flyingpie.Storm.Converters
             if (parameter.HasUserDefinedType)
             {
                 //TODO: Clean this up, makes code specific
-                return "IEnumerable<Database.UserDefinedTypes." + parameter.UserDefinedType.SchemaName + "." + parameter.UserDefinedType.NameClr + ">";
+                return string.Format(
+                    "IEnumerable<{0}.UserDefinedTypes." + parameter.UserDefinedType.Schema.NamespaceName + "." + parameter.UserDefinedType.NameClr + ">",
+                    GeneratorConfiguration.Instance.RootNamespace);
             }
             else
             {

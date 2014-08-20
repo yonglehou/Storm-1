@@ -69,10 +69,10 @@
         <xsl:for-each select="Parameters/ParameterInfo">
           <xsl:choose>
             <xsl:when test="HasUserDefinedType = 'true'">
-              request.Parameters.Add(new StoredProcedureTableTypeParameter("<xsl:value-of select="Name" />", ParameterDirection.<xsl:value-of select="ParameterModeEnum" />, "<xsl:value-of select="UserDefinedTypeSchema" />", "<xsl:value-of select="UserDefinedTypeName" />", <xsl:value-of select="NameClr" />));
+              request.Parameters.Add(new StoredProcedureTableTypeParameter("<xsl:value-of select="Name" />", "<xsl:value-of select="Type" />", ParameterDirection.<xsl:value-of select="ParameterModeEnum" />, "<xsl:value-of select="UserDefinedTypeSchema" />", "<xsl:value-of select="UserDefinedTypeName" />", <xsl:value-of select="NameClr" />));
             </xsl:when>
             <xsl:when test="HasUserDefinedType = 'false'">
-              request.Parameters.Add(new StoredProcedureSimpleParameter("<xsl:value-of select="Name" />", ParameterDirection.<xsl:value-of select="ParameterModeEnum" />, <xsl:value-of select="NameClr" />));
+              request.Parameters.Add(new StoredProcedureSimpleParameter("<xsl:value-of select="Name" />", "<xsl:value-of select="Type" />", ParameterDirection.<xsl:value-of select="ParameterModeEnum" />, <xsl:value-of select="NameClr" />));
             </xsl:when>
           </xsl:choose>
         </xsl:for-each>

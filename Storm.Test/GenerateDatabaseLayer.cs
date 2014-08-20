@@ -54,8 +54,8 @@ namespace Database
 		public virtual T GetSmallTable<T>(string name, string description) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "GetSmallTable");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", ParameterDirection.Input, description));
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", ParameterDirection.Input, name));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", "nvarchar", ParameterDirection.Input, description));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", "nvarchar", ParameterDirection.Input, name));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
@@ -63,7 +63,7 @@ namespace Database
 		public virtual T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "AddVendors");
-			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", ParameterDirection.Input, "Orm", "Vendor", vendors));
+			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", "table type", ParameterDirection.Input, "Orm", "Vendor", vendors));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
@@ -71,8 +71,8 @@ namespace Database
 		public virtual T GetScalar<T>(int? valueA, int? valueB) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "GetScalar");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueA", ParameterDirection.Input, valueA));
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueB", ParameterDirection.Input, valueB));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueA", "int", ParameterDirection.Input, valueA));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueB", "int", ParameterDirection.Input, valueB));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
@@ -80,7 +80,7 @@ namespace Database
 		public virtual T EchoDateTime<T>(DateTime? dateTime) where T : SqlResponse
 		{
 			var request = new SqlRequest("Orm", "EchoDateTime");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@DateTime", ParameterDirection.Input, dateTime));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@DateTime", "datetime2", ParameterDirection.Input, dateTime));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}

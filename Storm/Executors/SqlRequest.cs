@@ -37,6 +37,8 @@ namespace Flyingpie.Storm.Executors
     {
         public string Name { get; set; }
 
+        public string TypeName { get; set; }
+
         public ParameterDirection Mode { get; set; }
 
         public string DirectionString { get; set; }
@@ -46,11 +48,12 @@ namespace Flyingpie.Storm.Executors
 
     public class StoredProcedureSimpleParameter : StoredProcedureParameter
     {
-        public StoredProcedureSimpleParameter(string name, ParameterDirection mode, object value)
+        public StoredProcedureSimpleParameter(string name, string typeName, ParameterDirection mode, object value)
         {
             Name = name;
+            TypeName = typeName;
             Mode = mode;
-            Value = GeneratorConfiguration.Instance.ValueConverter.Convert(value);
+            Value = GeneratorConfiguration.Instance.ValueConverter.Convert(value, typeName);
         }
 
         public object Value { get; set; }
@@ -68,9 +71,10 @@ namespace Flyingpie.Storm.Executors
 
     public class StoredProcedureTableTypeParameter : StoredProcedureParameter
     {
-        public StoredProcedureTableTypeParameter(string name, ParameterDirection mode, string udtSchemaName, string udtName, IEnumerable table)
+        public StoredProcedureTableTypeParameter(string name, string typeName, ParameterDirection mode, string udtSchemaName, string udtName, IEnumerable table)
         {
             Name = name;
+            TypeName = typeName;
             Mode = mode;
             SchemaName = udtSchemaName;
             UdtName = udtName;
