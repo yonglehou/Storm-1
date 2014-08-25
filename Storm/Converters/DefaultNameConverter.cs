@@ -9,6 +9,11 @@ namespace Flyingpie.Storm.Converters
     {
         public virtual string ConvertSchemaToInterface(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return "I" + Capitalize(name);
@@ -16,6 +21,11 @@ namespace Flyingpie.Storm.Converters
 
         public virtual string ConvertSchemaToClass(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return Capitalize(name);
@@ -23,6 +33,11 @@ namespace Flyingpie.Storm.Converters
 
         public virtual string ConvertSchemaToNamespace(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return Capitalize(name);
@@ -30,6 +45,11 @@ namespace Flyingpie.Storm.Converters
 
         public virtual string ConvertStoredProcedureToMethod(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return Capitalize(name);
@@ -37,6 +57,11 @@ namespace Flyingpie.Storm.Converters
 
         public virtual string ConvertParameter(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             name = Capitalize(name);
@@ -48,6 +73,11 @@ namespace Flyingpie.Storm.Converters
 
         public virtual string ConvertColumnToProperty(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return Capitalize(name);
@@ -55,6 +85,11 @@ namespace Flyingpie.Storm.Converters
 
         public string ConvertUserDefinedTypeToClass(string name)
         {
+            if(string.IsNullOrEmpty(name))
+            {
+                return name;
+            }
+
             name = name.Replace("@", "");
 
             return Capitalize(name);
@@ -62,6 +97,11 @@ namespace Flyingpie.Storm.Converters
 
         private string Capitalize(string value)
         {
+            if(string.IsNullOrEmpty(value))
+            {
+                return value;
+            }
+
             var sb = new StringBuilder();
 
             var capitalizeNext = false;
