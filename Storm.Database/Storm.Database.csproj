@@ -47,11 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\SmallTable.cs" />
-    <Compile Include="Migrations\0001_InitialMigration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Data\Brands.cs" />
+    <Compile Include="Data\Models.cs" />
+    <Compile Include="Migrations\0001_Tables.cs" />
+    <Compile Include="Migrations\0002_Types.cs" />
+    <Compile Include="Migrations\0003_Procedures.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="InitializeDatabase.ps1" />
     <None Include="migrate.cmd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -63,7 +68,9 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>xcopy /Y "$(SolutionDir)packages\FluentMigrator.1.2.1.0\tools\Migrate.exe" "$(TargetDir)"
+    <PostBuildEvent>powershell -file "$(ProjectDir)InitializeDatabase.ps1"
+
+xcopy /Y "$(SolutionDir)packages\FluentMigrator.1.2.1.0\tools\Migrate.exe" "$(TargetDir)"
 migrate.cmd</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

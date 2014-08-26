@@ -6,18 +6,22 @@ namespace Flyingpie.Storm.Executors
     {
         public virtual void Execute(SqlRequest request, ISqlExecutor executor)
         {
-            executor.Query(request);
+            executor.Query<int>(request);
         }
     }
 
-    public class SqlResponseScalar : SqlResponse
+    public class SqlResponseScalar<T> : SqlResponse
     {
-        public int Result { get; set; }
+        public T Result { get; set; }
 
         public override void Execute(SqlRequest request, ISqlExecutor executor)
         {
-            Result = executor.Query(request);
+            Result = executor.QueryScalar<T>(request);
         }
+    }
+
+    public class SqlResponseScalar : SqlResponseScalar<int>
+    {
     }
 
     public class SqlResponse<T> : SqlResponse

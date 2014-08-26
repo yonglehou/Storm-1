@@ -10,7 +10,7 @@ namespace Flyingpie.Storm.Executors
 
         IDbTransaction BeginTransaction();
 
-        int Query(SqlRequest request);
+        T QueryScalar<T>(SqlRequest request);
 
         IEnumerable<T> Query<T>(SqlRequest request);
 

@@ -58,7 +58,8 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Converters\DefaultValueConverterTest.cs" />
-    <Compile Include="Dto\SmallTableRow.cs" />
+    <Compile Include="Dto\Brand.cs" />
+    <Compile Include="Dto\Model.cs" />
     <Compile Include="GenerateDatabaseLayer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

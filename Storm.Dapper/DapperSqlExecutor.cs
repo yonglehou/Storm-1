@@ -58,20 +58,20 @@ namespace Flyingpie.Storm.Dapper
             return _transaction;
         }
 
-        public int Query(SqlRequest request)
+        public T QueryScalar<T>(SqlRequest request)
         {
             CreateConnection();
 
             var parameters = CreateParameters(request);
 
-            var result = _connection.Query<int>(
+            var result = _connection.Query<T>(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
                 commandType: CommandType.StoredProcedure, transaction: _transaction);
 
             FetchParameterValue(request, parameters);
 
-            return result.Any() ? result.First() : -1;
+            return result.Any() ? result.First() : default(T);
         }
 
         public IEnumerable<T> Query<T>(SqlRequest request)

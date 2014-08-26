@@ -12,16 +12,20 @@ namespace Database
 
 	namespace UserDefinedTypes
 	{
-		namespace Orm
+		namespace Cars
 		{
 			[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-			public partial class Vendor
+			public partial class Brand
 			{
 				public string Name { get; set; }
 				public string Description { get; set; }
 				public int? HorsePower { get; set; }
 				public byte[] Image { get; set; }
 			}
+		}
+
+		namespace Utility
+		{
 		}
 	}
 
@@ -30,11 +34,17 @@ namespace Database
 	#region Interfaces
 
 	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public interface IOrm
+	public interface ICars
 	{
-		T GetSmallTable<T>(string name, string description) where T : SqlResponse;
-		T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse;
-		T GetScalar<T>(int? valueA, int? valueB) where T : SqlResponse;
+		T GetBrands<T>(string name, string description) where T : SqlResponse;
+		T AddBrand<T>(IEnumerable<Database.UserDefinedTypes.Cars.Brand> vendors) where T : SqlResponse;
+		T GetBrandsAndModels<T>() where T : SqlResponse;
+	}
+
+	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
+	public interface IUtility
+	{
+		T GetAddition<T>(int? valueA, int? valueB) where T : SqlResponse;
 		T EchoDateTime<T>(DateTime? dateTime) where T : SqlResponse;
 	}
 
@@ -43,34 +53,51 @@ namespace Database
 	#region Classes
 
 	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public partial class Orm : IOrm
+	public partial class Cars : ICars
 	{
 		private ISqlExecutor _executor;
-		public Orm(ISqlExecutor executor)
+		public Cars(ISqlExecutor executor)
 		{
 			_executor = executor;
 		}
 
-		public virtual T GetSmallTable<T>(string name, string description) where T : SqlResponse
+		public virtual T GetBrands<T>(string name, string description) where T : SqlResponse
 		{
-			var request = new SqlRequest("Orm", "GetSmallTable");
+			var request = new SqlRequest("Cars", "GetBrands");
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", "nvarchar", ParameterDirection.Input, description));
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", "nvarchar", ParameterDirection.Input, name));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
 
-		public virtual T AddVendors<T>(IEnumerable<Database.UserDefinedTypes.Orm.Vendor> vendors) where T : SqlResponse
+		public virtual T AddBrand<T>(IEnumerable<Database.UserDefinedTypes.Cars.Brand> vendors) where T : SqlResponse
 		{
-			var request = new SqlRequest("Orm", "AddVendors");
-			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", "table type", ParameterDirection.Input, "Orm", "Vendor", vendors));
+			var request = new SqlRequest("Cars", "AddBrand");
+			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", "table type", ParameterDirection.Input, "Cars", "Brand", vendors));
 			var result = _executor.Execute<T>(request);
 			return result;
 		}
 
-		public virtual T GetScalar<T>(int? valueA, int? valueB) where T : SqlResponse
+		public virtual T GetBrandsAndModels<T>() where T : SqlResponse
 		{
-			var request = new SqlRequest("Orm", "GetScalar");
+			var request = new SqlRequest("Cars", "GetBrandsAndModels");
+			var result = _executor.Execute<T>(request);
+			return result;
+		}
+	}
+
+	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
+	public partial class Utility : IUtility
+	{
+		private ISqlExecutor _executor;
+		public Utility(ISqlExecutor executor)
+		{
+			_executor = executor;
+		}
+
+		public virtual T GetAddition<T>(int? valueA, int? valueB) where T : SqlResponse
+		{
+			var request = new SqlRequest("Utility", "GetAddition");
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueA", "int", ParameterDirection.Input, valueA));
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueB", "int", ParameterDirection.Input, valueB));
 			var result = _executor.Execute<T>(request);
@@ -79,7 +106,7 @@ namespace Database
 
 		public virtual T EchoDateTime<T>(DateTime? dateTime) where T : SqlResponse
 		{
-			var request = new SqlRequest("Orm", "EchoDateTime");
+			var request = new SqlRequest("Utility", "EchoDateTime");
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@DateTime", "datetime2", ParameterDirection.Input, dateTime));
 			var result = _executor.Execute<T>(request);
 			return result;
