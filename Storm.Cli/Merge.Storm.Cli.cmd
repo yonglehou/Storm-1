@@ -1,4 +1,4 @@
-﻿ECHO Create a single dll to add in the NuGet package
+ECHO Create a single dll to add in the NuGet package
 
 IF EXIST "Merged.Storm.Cli" rmdir /s /q "Merged.Storm.Cli"
 mkdir "Merged.Storm.Cli"
