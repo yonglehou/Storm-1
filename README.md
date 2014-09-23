@@ -16,6 +16,10 @@ Storm currently works for SQL Server only.
 * Documentation: [https://github.com/FlyingPie/Storm/wiki](https://github.com/FlyingPie/Storm/wiki)
 * Bugs and changes: [https://github.com/FlyingPie/Storm/issues](https://github.com/FlyingPie/Storm/issues)
 
+## Build Status
+
+* Nightly: ![alt text](http://mbuild.cloudapp.net/app/rest/builds/buildType:Tessler_Nightly/statusIcon "Nightly Build Status")
+
 ## Example
 
 ### Code generation
