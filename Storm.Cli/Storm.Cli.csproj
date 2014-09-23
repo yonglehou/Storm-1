@@ -61,6 +61,9 @@
     <None Include="..\NuGet\Storm.snk">
       <Link>Storm.snk</Link>
     </None>
+    <None Include="Merge.Storm.Cli.cmd">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -73,10 +76,15 @@
       <Name>Storm</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="ILRepack.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
-    <PostBuildEvent>"$(SolutionDir)packages\ILRepack.1.25.0\tools\ILRepack.exe" /target:exe /out:stormcli.exe $(TargetName).exe CommandLine.dll Flyingpie.Storm.dll Flyingpie.Storm.Dapper.dll Dapper.dll</PostBuildEvent>
+    <PostBuildEvent>call "$(TargetDir)Merge.Storm.Cli.cmd"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
