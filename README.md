@@ -18,7 +18,7 @@ Storm currently works for SQL Server only.
 
 ## Build Status
 
-* Nightly: ![alt text](http://mbuild.cloudapp.net/app/rest/builds/buildType:Tessler_Nightly/statusIcon "Nightly Build Status")
+* Nightly: ![alt text](http://mbuild.cloudapp.net/app/rest/builds/buildType:Storm_Nightly/statusIcon "Nightly Build Status")
 
 ## Example
 
