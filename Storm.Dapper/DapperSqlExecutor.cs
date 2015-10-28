@@ -86,6 +86,8 @@ namespace Flyingpie.Storm.Dapper
                 commandType: CommandType.StoredProcedure,
                 transaction: _transaction);
 
+            FetchParameterValue(request, parameters);
+
             return result;
         }
 
@@ -103,6 +105,8 @@ namespace Flyingpie.Storm.Dapper
 
             var result1 = results.Read<T1>();
             var result2 = results.Read<T2>();
+
+            FetchParameterValue(request, parameters);
 
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(result1, result2);
         }
@@ -122,6 +126,8 @@ namespace Flyingpie.Storm.Dapper
             var result1 = results.Read<T1>();
             var result2 = results.Read<T2>();
             var result3 = results.Read<T3>();
+
+            FetchParameterValue(request, parameters);
 
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(result1, result2, result3);
         }
@@ -143,6 +149,8 @@ namespace Flyingpie.Storm.Dapper
             var result3 = results.Read<T3>();
             var result4 = results.Read<T4>();
 
+            FetchParameterValue(request, parameters);
+
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>>(result1, result2, result3, result4);
         }
 
@@ -163,6 +171,8 @@ namespace Flyingpie.Storm.Dapper
             var result3 = results.Read<T3>();
             var result4 = results.Read<T4>();
             var result5 = results.Read<T5>();
+
+            FetchParameterValue(request, parameters);
 
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>>(result1, result2, result3, result4, result5);
         }
@@ -186,6 +196,8 @@ namespace Flyingpie.Storm.Dapper
             var result5 = results.Read<T5>();
             var result6 = results.Read<T6>();
 
+            FetchParameterValue(request, parameters);
+
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>>(result1, result2, result3, result4, result5, result6);
         }
 
@@ -208,6 +220,8 @@ namespace Flyingpie.Storm.Dapper
             var result5 = results.Read<T5>();
             var result6 = results.Read<T6>();
             var result7 = results.Read<T7>();
+
+            FetchParameterValue(request, parameters);
 
             return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>>(result1, result2, result3, result4, result5, result6, result7);
         }
