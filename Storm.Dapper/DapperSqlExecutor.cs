@@ -17,28 +17,29 @@ namespace Flyingpie.Storm.Dapper
         private IDbConnection _connection;
         private IDbTransaction _transaction;
 
-        private DapperSqlExecutor()
+        public DapperSqlExecutor(DapperConfiguration configuration)
         {
+            ConnectionString = configuration.ConnectionString;
         }
 
-        public static DapperSqlExecutor FromConnectionString(string connectionString)
-        {
-            var executor = new DapperSqlExecutor();
-            executor.ConnectionString = connectionString;
-            return executor;
-        }
+        //public static DapperSqlExecutor FromConnectionString(string connectionString)
+        //{
+        //    var executor = new DapperSqlExecutor();
+        //    executor.ConnectionString = connectionString;
+        //    return executor;
+        //}
 
-        public static DapperSqlExecutor FromConnectionStringName(string connectionStringName)
-        {
-            var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
+        //public static DapperSqlExecutor FromConnectionStringName(string connectionStringName)
+        //{
+        //    var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
 
-            if (connectionString == null)
-            {
-                throw new InvalidOperationException("No connection string found in config with name '" + connectionStringName + "'");
-            }
+        //    if (connectionString == null)
+        //    {
+        //        throw new InvalidOperationException("No connection string found in config with name '" + connectionStringName + "'");
+        //    }
 
-            return FromConnectionString(connectionString.ConnectionString);
-        }
+        //    return FromConnectionString(connectionString.ConnectionString);
+        //}
 
         public T Execute<T>(SqlRequest request) where T : SqlResponse
         {

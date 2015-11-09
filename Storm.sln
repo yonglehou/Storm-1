@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm", "Storm\Storm.csproj", "{32CF1A29-5710-41F1-968D-A7EB22480E09}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Dapper", "Storm.Dapper\Storm.Dapper.csproj", "{90100D17-1CD4-4FAE-9ED8-B2EEE733C126}"
@@ -21,6 +23,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Dapper.Test", "Storm.Dapper.Test\Storm.Dapper.Test.csproj", "{1DE326BF-7358-43C7-A6A3-195BA9AC2A33}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Storm.Cli", "Storm.Cli\Storm.Cli.csproj", "{84E055E7-5C0D-4ABA-BE42-08BEC7D407D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserTest", "UserTest\UserTest.csproj", "{42B12B55-B58C-4FE0-98B8-218CB9653827}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -56,6 +60,10 @@ Global
 		{84E055E7-5C0D-4ABA-BE42-08BEC7D407D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84E055E7-5C0D-4ABA-BE42-08BEC7D407D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84E055E7-5C0D-4ABA-BE42-08BEC7D407D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42B12B55-B58C-4FE0-98B8-218CB9653827}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42B12B55-B58C-4FE0-98B8-218CB9653827}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42B12B55-B58C-4FE0-98B8-218CB9653827}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42B12B55-B58C-4FE0-98B8-218CB9653827}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

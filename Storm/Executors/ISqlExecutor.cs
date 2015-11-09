@@ -6,8 +6,6 @@ namespace Flyingpie.Storm.Executors
 {
     public interface ISqlExecutor : IDisposable
     {
-        T Execute<T>(SqlRequest request) where T : SqlResponse;
-
         IDbTransaction BeginTransaction();
 
         T QueryScalar<T>(SqlRequest request);

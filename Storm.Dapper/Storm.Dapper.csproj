@@ -52,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DapperConfiguration.cs" />
     <Compile Include="DapperSqlExecutor.cs" />
+    <Compile Include="DapperSqlExecutorMiddleWare.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
