@@ -45,53 +45,55 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CodeGenerators\ICodeGenerator.cs" />
-    <Compile Include="Converters\DefaultValueConverter.cs" />
-    <Compile Include="Converters\IValueConverter.cs" />
-    <Compile Include="Executors\IMiddleWare.cs" />
-    <Compile Include="Formatters\DefaultCodeFormatter.cs" />
-    <Compile Include="Formatters\ICodeFormatter.cs" />
-    <Compile Include="CodeGenerators\XsltCodeGenerator.cs" />
-    <Compile Include="Executors\ISqlExecutor.cs" />
-    <Compile Include="Executors\SqlRequest.cs" />
-    <Compile Include="Executors\SqlResponse.cs" />
-    <Compile Include="Generator.cs" />
-    <Compile Include="GeneratorConfiguration.cs" />
-    <Compile Include="IQueryChain.cs" />
-    <Compile Include="MiddleWare\DefaultValueConverterMiddleWare.cs" />
-    <Compile Include="MiddleWare\IMiddleWare.cs" />
-    <Compile Include="Model\MapToAttribute.cs" />
-    <Compile Include="Model\ParameterInfo.cs" />
-    <Compile Include="Model\UserDefinedTypeColumnInfo.cs" />
-    <Compile Include="Model\UserDefinedTypeInfo.cs" />
-    <Compile Include="Converters\DefaultNameConverter.cs" />
-    <Compile Include="Converters\INameConverter.cs" />
-    <Compile Include="Resources\Xslt.Designer.cs">
+    <Compile Include="Execution\IMultipleResultSetReader.cs" />
+    <Compile Include="Execution\ISqlRequest.cs" />
+    <Compile Include="Execution\Parameters\OutputParameter.cs" />
+    <Compile Include="Execution\Parameters\StoredProcedureParameter.cs" />
+    <Compile Include="Execution\Parameters\StoredProcedureSimpleParameter.cs" />
+    <Compile Include="Execution\Parameters\StoredProcedureTableTypeParameter.cs" />
+    <Compile Include="Extensions.cs" />
+    <Compile Include="Generation\CodeGenerators\ICodeGenerator.cs" />
+    <Compile Include="Generation\Formatters\DefaultCodeFormatter.cs" />
+    <Compile Include="Generation\Formatters\ICodeFormatter.cs" />
+    <Compile Include="Generation\CodeGenerators\XsltCodeGenerator.cs" />
+    <Compile Include="Execution\ISqlExecutor.cs" />
+    <Compile Include="Execution\SqlRequest.cs" />
+    <Compile Include="Generation\Generator.cs" />
+    <Compile Include="Generation\GeneratorConfiguration.cs" />
+    <Compile Include="Execution\IQueryChain.cs" />
+    <Compile Include="Execution\IMiddleware.cs" />
+    <Compile Include="Generation\Model\MapToAttribute.cs" />
+    <Compile Include="Generation\Model\ParameterInfo.cs" />
+    <Compile Include="Generation\Model\UserDefinedTypeColumnInfo.cs" />
+    <Compile Include="Generation\Model\UserDefinedTypeInfo.cs" />
+    <Compile Include="Generation\Converters\DefaultNameConverter.cs" />
+    <Compile Include="Generation\Converters\INameConverter.cs" />
+    <Compile Include="Generation\Resources\Xslt.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Xslt.resx</DependentUpon>
     </Compile>
-    <Compile Include="Converters\DefaultTypeConverter.cs" />
-    <Compile Include="Converters\ITypeConverter.cs" />
-    <Compile Include="QueryChain.cs" />
+    <Compile Include="Generation\Converters\DefaultTypeConverter.cs" />
+    <Compile Include="Generation\Converters\ITypeConverter.cs" />
+    <Compile Include="Execution\QueryChain.cs" />
     <Compile Include="Utility\IEnumerableExtensions.cs" />
     <Compile Include="Utility\SqlUtil.cs" />
-    <Compile Include="Model\DatabaseModel.cs" />
-    <Compile Include="Model\SchemaInfo.cs" />
-    <Compile Include="Model\StoredProcedureInfo.cs" />
+    <Compile Include="Generation\Model\DatabaseModel.cs" />
+    <Compile Include="Generation\Model\SchemaInfo.cs" />
+    <Compile Include="Generation\Model\StoredProcedureInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resources\Sql.Designer.cs">
+    <Compile Include="Generation\Resources\Sql.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Sql.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Sql.resx">
+    <EmbeddedResource Include="Generation\Resources\Sql.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Sql.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Xslt.resx">
+    <EmbeddedResource Include="Generation\Resources\Xslt.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Xslt.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -100,23 +102,26 @@
     <None Include="..\NuGet\Storm.snk">
       <Link>Storm.snk</Link>
     </None>
-    <None Include="Resources\Default.xslt" />
+    <None Include="Generation\Resources\Default.xslt">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ListParameters.sql" />
+    <None Include="Generation\Resources\ListParameters.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ListSchemas.sql" />
+    <None Include="Generation\Resources\ListSchemas.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ListStoredProcedures.sql" />
+    <None Include="Generation\Resources\ListStoredProcedures.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ListUserDefinedTypeColumns.sql" />
+    <None Include="Generation\Resources\ListUserDefinedTypeColumns.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ListUserDefinedTypes.sql" />
+    <None Include="Generation\Resources\ListUserDefinedTypes.sql" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

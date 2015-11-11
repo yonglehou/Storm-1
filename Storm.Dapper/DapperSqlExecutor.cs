@@ -1,9 +1,9 @@
-﻿using Flyingpie.Storm.Executors;
+﻿using Flyingpie.Storm.Execution;
+using Flyingpie.Storm.Execution.Parameters;
 using Flyingpie.Storm.Utility;
 using global::Dapper;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -22,34 +22,6 @@ namespace Flyingpie.Storm.Dapper
             ConnectionString = configuration.ConnectionString;
         }
 
-        //public static DapperSqlExecutor FromConnectionString(string connectionString)
-        //{
-        //    var executor = new DapperSqlExecutor();
-        //    executor.ConnectionString = connectionString;
-        //    return executor;
-        //}
-
-        //public static DapperSqlExecutor FromConnectionStringName(string connectionStringName)
-        //{
-        //    var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName];
-
-        //    if (connectionString == null)
-        //    {
-        //        throw new InvalidOperationException("No connection string found in config with name '" + connectionStringName + "'");
-        //    }
-
-        //    return FromConnectionString(connectionString.ConnectionString);
-        //}
-
-        public T Execute<T>(SqlRequest request) where T : SqlResponse
-        {
-            var response = Activator.CreateInstance<T>();
-
-            response.Execute(request, this);
-
-            return response;
-        }
-
         public IDbTransaction BeginTransaction()
         {
             CreateConnection();
@@ -59,7 +31,21 @@ namespace Flyingpie.Storm.Dapper
             return _transaction;
         }
 
-        public T QueryScalar<T>(SqlRequest request)
+        public void NonQuery(ISqlRequest request)
+        {
+            CreateConnection();
+
+            var parameters = CreateParameters(request);
+
+            var result = _connection.Query<int>(
+                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
+                parameters,
+                commandType: CommandType.StoredProcedure, transaction: _transaction);
+
+            FetchParameterValue(request, parameters);
+        }
+
+        public T Scalar<T>(ISqlRequest request)
         {
             CreateConnection();
 
@@ -75,7 +61,7 @@ namespace Flyingpie.Storm.Dapper
             return result.Any() ? result.First() : default(T);
         }
 
-        public IEnumerable<T> Query<T>(SqlRequest request)
+        public IEnumerable<T> Query<T>(ISqlRequest request)
         {
             CreateConnection();
 
@@ -92,139 +78,21 @@ namespace Flyingpie.Storm.Dapper
             return result;
         }
 
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>> Query<T1, T2>(SqlRequest request)
+        public IMultipleResultSetReader Multiple(ISqlRequest request)
         {
             CreateConnection();
 
             var parameters = CreateParameters(request);
 
-            var results = _connection.QueryMultiple(
+            var reader = _connection.QueryMultiple(
                 string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
                 parameters,
                 commandType: CommandType.StoredProcedure,
                 transaction: _transaction);
 
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-
             FetchParameterValue(request, parameters);
 
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>>(result1, result2);
-        }
-
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>> Query<T1, T2, T3>(SqlRequest request)
-        {
-            CreateConnection();
-
-            var parameters = CreateParameters(request);
-
-            var results = _connection.QueryMultiple(
-                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                parameters,
-                commandType: CommandType.StoredProcedure,
-                transaction: _transaction);
-
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-            var result3 = results.Read<T3>();
-
-            FetchParameterValue(request, parameters);
-
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>>(result1, result2, result3);
-        }
-
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>> Query<T1, T2, T3, T4>(SqlRequest request)
-        {
-            CreateConnection();
-
-            var parameters = CreateParameters(request);
-
-            var results = _connection.QueryMultiple(
-                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                parameters,
-                commandType: CommandType.StoredProcedure,
-                transaction: _transaction);
-
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-            var result3 = results.Read<T3>();
-            var result4 = results.Read<T4>();
-
-            FetchParameterValue(request, parameters);
-
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>>(result1, result2, result3, result4);
-        }
-
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>> Query<T1, T2, T3, T4, T5>(SqlRequest request)
-        {
-            CreateConnection();
-
-            var parameters = CreateParameters(request);
-
-            var results = _connection.QueryMultiple(
-                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                parameters,
-                commandType: CommandType.StoredProcedure,
-                transaction: _transaction);
-
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-            var result3 = results.Read<T3>();
-            var result4 = results.Read<T4>();
-            var result5 = results.Read<T5>();
-
-            FetchParameterValue(request, parameters);
-
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>>(result1, result2, result3, result4, result5);
-        }
-
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>> Query<T1, T2, T3, T4, T5, T6>(SqlRequest request)
-        {
-            CreateConnection();
-
-            var parameters = CreateParameters(request);
-
-            var results = _connection.QueryMultiple(
-                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                parameters,
-                commandType: CommandType.StoredProcedure,
-                transaction: _transaction);
-
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-            var result3 = results.Read<T3>();
-            var result4 = results.Read<T4>();
-            var result5 = results.Read<T5>();
-            var result6 = results.Read<T6>();
-
-            FetchParameterValue(request, parameters);
-
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>>(result1, result2, result3, result4, result5, result6);
-        }
-
-        public Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>> Query<T1, T2, T3, T4, T5, T6, T7>(SqlRequest request)
-        {
-            CreateConnection();
-
-            var parameters = CreateParameters(request);
-
-            var results = _connection.QueryMultiple(
-                string.Format("{0}.{1}", request.SchemaName, request.StoredProcedureName),
-                parameters,
-                commandType: CommandType.StoredProcedure,
-                transaction: _transaction);
-
-            var result1 = results.Read<T1>();
-            var result2 = results.Read<T2>();
-            var result3 = results.Read<T3>();
-            var result4 = results.Read<T4>();
-            var result5 = results.Read<T5>();
-            var result6 = results.Read<T6>();
-            var result7 = results.Read<T7>();
-
-            FetchParameterValue(request, parameters);
-
-            return new Tuple<IEnumerable<T1>, IEnumerable<T2>, IEnumerable<T3>, IEnumerable<T4>, IEnumerable<T5>, IEnumerable<T6>, IEnumerable<T7>>(result1, result2, result3, result4, result5, result6, result7);
+            return new MultipleResultSetReader(reader);
         }
 
         private void CreateConnection()
@@ -241,7 +109,7 @@ namespace Flyingpie.Storm.Dapper
             }
         }
 
-        private DynamicParameters CreateParameters(SqlRequest request)
+        private DynamicParameters CreateParameters(ISqlRequest request)
         {
             var parameters = new DynamicParameters();
 
@@ -270,7 +138,7 @@ namespace Flyingpie.Storm.Dapper
             return parameters;
         }
 
-        private void FetchParameterValue(SqlRequest request, DynamicParameters parameters)
+        private void FetchParameterValue(ISqlRequest request, DynamicParameters parameters)
         {
             request
                 .Parameters
@@ -279,19 +147,6 @@ namespace Flyingpie.Storm.Dapper
                 .ToList()
                 .ForEach(p => p.Value = parameters.Get<object>(p.Name)) // Retrieve the new parameter value from the executed stored proc
             ;
-            /*
-
-            foreach (var parameter in request.Parameters)
-            {
-                var simple = parameter as StoredProcedureSimpleParameter;
-
-                if (simple != null)
-                {
-                    simple.Value = parameters.Get<object>(parameter.Name);
-                    continue;
-                }
-            }
-             */
         }
 
         public void Dispose()

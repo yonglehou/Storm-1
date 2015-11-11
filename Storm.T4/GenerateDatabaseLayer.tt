@@ -9,6 +9,7 @@
 // Look for the NuGet packages folder and resolve the absolute path
 var path = Host.ResolvePath(@"..\packages");
 path = System.IO.Path.GetFullPath(path);
+path = @"C:\Users\marco\Source\Repos\Flyingpie\Storm\Storm\bin\Debug\";
 
 // Find the Storm package
 var dirInfo = new System.IO.DirectoryInfo(path);
@@ -20,8 +21,9 @@ if (stormDll == null)
 }
 else
 {
-	var assembly = System.Reflection.Assembly.LoadFile(stormDll.FullName);
-	var generatorType = assembly.GetTypes().FirstOrDefault(t => t.FullName == "Flyingpie.Storm.Generator");
+	var assemblyBytes = System.IO.File.ReadAllBytes(stormDll.FullName);
+	var assembly = System.Reflection.Assembly.Load(assemblyBytes);
+	var generatorType = assembly.GetTypes().FirstOrDefault(t => t.FullName == "Flyingpie.Storm.Generation.Generator");
 
 	if (generatorType == null)
 	{
@@ -29,7 +31,7 @@ else
 	}
 	else
 	{
-		var cString = "<connection string>";
+		var cString = "server=storm.database.windows.net;database=Storm;user=storm;password=WRQLgVSsAHy2W8pHe6T4;";
 		var generator = generatorType.InvokeMember("FromConnectionString", System.Reflection.BindingFlags.InvokeMethod, System.Type.DefaultBinder, "", new object[] { cString });
 		var result = generatorType.InvokeMember("Generate", System.Reflection.BindingFlags.InvokeMethod, System.Type.DefaultBinder, generator, new object[] { });
 

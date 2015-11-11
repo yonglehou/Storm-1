@@ -1,38 +1,25 @@
-﻿using Flyingpie.Storm.Executors;
+﻿using Flyingpie.Storm.Execution;
 using System;
 
 namespace Flyingpie.Storm.Dapper
 {
-    public class DapperSqlExecutorMiddleWare : IMiddleWare
+    public class DapperSqlExecutorMiddleware : IMiddleware
     {
-        private DapperSqlExecutor _executor;
+        private DapperConfiguration _configuration;
+        private ISqlExecutor _executor;
 
-        public DapperSqlExecutorMiddleWare(DapperSqlExecutor executor)
+        public DapperSqlExecutorMiddleware(DapperConfiguration configuration)
         {
-            _executor = executor;
+            _configuration = configuration;
+            _executor = new DapperSqlExecutor(_configuration);
         }
 
-        public Func<SqlRequest, T> Execute<T>(Func<SqlRequest, T> next) where T : SqlResponse
+        public Func<ISqlRequest, ISqlExecutor> Execute(Func<ISqlRequest, ISqlExecutor> next)
         {
             return request =>
             {
-                var response = Activator.CreateInstance<T>();
-
-                response.Execute(request, _executor);
-
-                return response;
+                return _executor;
             };
-        }
-    }
-
-    public static class DapperSqlExecutorMiddleWareExtensions
-    {
-        public static IQueryChain UseDapper(this IQueryChain queryChain, DapperConfiguration configuration)
-        {
-            var sqlExecutor = new DapperSqlExecutor(configuration);
-            queryChain.Use(new DapperSqlExecutorMiddleWare(sqlExecutor));
-
-            return queryChain;
         }
     }
 }

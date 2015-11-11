@@ -1,4 +1,4 @@
-﻿using Flyingpie.Storm.Model;
+﻿using Flyingpie.Storm.Generation.Model;
 using System;
 using System.Collections.Generic;
 using System.Data;

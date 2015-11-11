@@ -54,13 +54,16 @@
   <ItemGroup>
     <Compile Include="DapperConfiguration.cs" />
     <Compile Include="DapperSqlExecutor.cs" />
-    <Compile Include="DapperSqlExecutorMiddleWare.cs" />
+    <Compile Include="DapperSqlExecutorMiddleware.cs" />
+    <Compile Include="DefaultValueConverter.cs" />
+    <Compile Include="DapperIQueryChainExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\NuGet\Storm.snk">
       <Link>Storm.snk</Link>
     </None>
+    <Compile Include="MultipleResultSetReader.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

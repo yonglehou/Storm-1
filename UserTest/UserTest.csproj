@@ -51,34 +51,21 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ConsoleLoggerMiddleware.cs" />
+    <Compile Include="DataTest.cs" />
+    <Compile Include="ExceptionHandlerMiddleware.cs" />
     <Compile Include="GenerateDatabaseLayer.cs" />
     <Compile Include="UnitTest1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Storm.Cli\Storm.Cli.csproj">
-      <Project>{84e055e7-5c0d-4aba-be42-08bec7d407d5}</Project>
-      <Name>Storm.Cli</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Storm.Dapper.Test\Storm.Dapper.Test.csproj">
-      <Project>{1de326bf-7358-43c7-a6a3-195ba9ac2a33}</Project>
-      <Name>Storm.Dapper.Test</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Storm.Dapper\Storm.Dapper.csproj">
       <Project>{90100d17-1cd4-4fae-9ed8-b2eee733c126}</Project>
       <Name>Storm.Dapper</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Storm.Database\Storm.Database.csproj">
-      <Project>{59cf3061-a86e-4b81-aea6-17747b92a40a}</Project>
-      <Name>Storm.Database</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Storm.T4\Storm.T4.csproj">
       <Project>{379c3464-20c3-45e0-bf4d-edb4960b333d}</Project>
       <Name>Storm.T4</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Storm.Test\Storm.Test.csproj">
-      <Project>{44ffbab3-75c1-4c42-955f-23fd2e0316a8}</Project>
-      <Name>Storm.Test</Name>
     </ProjectReference>
     <ProjectReference Include="..\Storm\Storm.csproj">
       <Project>{32cf1a29-5710-41f1-968d-a7eb22480e09}</Project>
