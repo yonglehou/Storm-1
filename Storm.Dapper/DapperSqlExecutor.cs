@@ -19,7 +19,7 @@ namespace Flyingpie.Storm.Dapper
 
         public DapperSqlExecutor(DapperConfiguration configuration)
         {
-            ConnectionString = configuration.ConnectionString;
+            ConnectionString = configuration.GetConnectionString();
         }
 
         public IDbTransaction BeginTransaction()

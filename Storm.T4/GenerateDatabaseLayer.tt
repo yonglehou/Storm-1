@@ -31,7 +31,7 @@ else
 	}
 	else
 	{
-		var cString = "server=storm.database.windows.net;database=Storm;user=storm;password=WRQLgVSsAHy2W8pHe6T4;";
+		var cString = "server=.;database=Storm;integrated security=true;";
 		var generator = generatorType.InvokeMember("FromConnectionString", System.Reflection.BindingFlags.InvokeMethod, System.Type.DefaultBinder, "", new object[] { cString });
 		var result = generatorType.InvokeMember("Generate", System.Reflection.BindingFlags.InvokeMethod, System.Type.DefaultBinder, generator, new object[] { });
 

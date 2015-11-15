@@ -1,1 +1,1 @@
-migrate.exe -c "data source=.;database=Storm;integrated security=true;" --dbType=sqlserver2008 --assembly=Flyingpie.Storm.Database.dll --profile=TestData
+migrate.exe -c "server=.;database=storm;integrated security=true;" --dbType=sqlserver2008 --assembly=Flyingpie.Storm.Database.dll --profile=TestData

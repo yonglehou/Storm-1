@@ -1,4 +1,4 @@
-﻿using Database;
+﻿//using Database;
 using Flyingpie.Storm.Dapper;
 using Flyingpie.Storm.Execution;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -19,18 +19,18 @@ namespace UserTest
                     ConnectionString = "server=storm.database.windows.net;database=Storm;user=storm;password=WRQLgVSsAHy2W8pHe6T4;"
                 });
 
-            var data = new Data(queryChain);
-
+            //var data = new Data(queryChain);
+            
             // Query
             //var result = data.CspInstantieS01(null, null, null, null, null, null).Query<InstantieDto>();
 
             // Multiple
-            using (var reader = data.CspWithMultipleResultSets(null).Multiple())
-            {
-                var result1 = reader.Read<InstantieDto>();
+            //using (var reader = data.CspWithMultipleResultSets(null).Multiple())
+            //{
+            //    var result1 = reader.Read<InstantieDto>();
 
-                var result2 = reader.Read<GebruikerDto>();
-            }
+            //    var result2 = reader.Read<GebruikerDto>();
+            //}
         }
     }
 

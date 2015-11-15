@@ -2,9 +2,8 @@
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using Flyingpie.Storm;
-using Flyingpie.Storm.Executors;
+using Flyingpie.Storm.Execution;
+using Flyingpie.Storm.Execution.Parameters;
 
 namespace Database
 {
@@ -12,19 +11,18 @@ namespace Database
 
 	namespace UserDefinedTypes
 	{
-		namespace Cars
+		namespace Demo
 		{
-			[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-			public partial class Brand
+			public partial class UdtModel
 			{
+				public int? BrandId { get; set; }
 				public string Name { get; set; }
-				public string Description { get; set; }
 				public int? HorsePower { get; set; }
-				public byte[] Image { get; set; }
+				public int? Year { get; set; }
 			}
 		}
 
-		namespace Utility
+		namespace IntegrationTest
 		{
 		}
 	}
@@ -33,83 +31,103 @@ namespace Database
 
 	#region Interfaces
 
-	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public interface ICars
+	public interface IDemo
 	{
-		T GetBrands<T>(string name, string description) where T : SqlResponse;
-		T AddBrand<T>(IEnumerable<Database.UserDefinedTypes.Cars.Brand> vendors) where T : SqlResponse;
-		T GetBrandsAndModels<T>() where T : SqlResponse;
+		ISqlRequest GetAllBrands();
+		ISqlRequest GetModelsByBrandIdAndYear(int? brandId, int? year);
+		ISqlRequest AddModel(int? brandId, string name, int? horsePower, int? year);
+		ISqlRequest GetAllBrandsAndModels();
+		ISqlRequest BulkAddModels(IEnumerable<Database.UserDefinedTypes.Demo.UdtModel> models);
 	}
 
-	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public interface IUtility
+	public interface IIntegrationTest
 	{
-		T GetAddition<T>(int? valueA, int? valueB) where T : SqlResponse;
-		T EchoDateTime<T>(DateTime? dateTime) where T : SqlResponse;
+		ISqlRequest QueryNoParameters();
+		ISqlRequest NonQueryNoParameters();
+		ISqlRequest ScalarNoParameters();
+		ISqlRequest MultipleResultSetsNoParameters();
 	}
 
 	#endregion
 
 	#region Classes
 
-	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public partial class Cars : ICars
+	public partial class Demo : IDemo
 	{
-		private ISqlExecutor _executor;
-		public Cars(ISqlExecutor executor)
+		private IQueryChain _queryChain;
+		public Demo(IQueryChain queryChain)
 		{
-			_executor = executor;
+			_queryChain = queryChain;
 		}
 
-		public virtual T GetBrands<T>(string name, string description) where T : SqlResponse
+		public virtual ISqlRequest GetAllBrands()
 		{
-			var request = new SqlRequest("Cars", "GetBrands");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@Description", "nvarchar", ParameterDirection.Input, description));
+			var request = new SqlRequest(_queryChain, "Demo", "GetAllBrands");
+			return request;
+		}
+
+		public virtual ISqlRequest GetModelsByBrandIdAndYear(int? brandId, int? year)
+		{
+			var request = new SqlRequest(_queryChain, "Demo", "GetModelsByBrandIdAndYear");
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@BrandId", "int", ParameterDirection.Input, brandId));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Year", "int", ParameterDirection.Input, year));
+			return request;
+		}
+
+		public virtual ISqlRequest AddModel(int? brandId, string name, int? horsePower, int? year)
+		{
+			var request = new SqlRequest(_queryChain, "Demo", "AddModel");
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@BrandId", "int", ParameterDirection.Input, brandId));
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@HorsePower", "int", ParameterDirection.Input, horsePower));
 			request.Parameters.Add(new StoredProcedureSimpleParameter("@Name", "nvarchar", ParameterDirection.Input, name));
-			var result = _executor.Execute<T>(request);
-			return result;
+			request.Parameters.Add(new StoredProcedureSimpleParameter("@Year", "int", ParameterDirection.Input, year));
+			return request;
 		}
 
-		public virtual T AddBrand<T>(IEnumerable<Database.UserDefinedTypes.Cars.Brand> vendors) where T : SqlResponse
+		public virtual ISqlRequest GetAllBrandsAndModels()
 		{
-			var request = new SqlRequest("Cars", "AddBrand");
-			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Vendors", "table type", ParameterDirection.Input, "Cars", "Brand", vendors));
-			var result = _executor.Execute<T>(request);
-			return result;
+			var request = new SqlRequest(_queryChain, "Demo", "GetAllBrandsAndModels");
+			return request;
 		}
 
-		public virtual T GetBrandsAndModels<T>() where T : SqlResponse
+		public virtual ISqlRequest BulkAddModels(IEnumerable<Database.UserDefinedTypes.Demo.UdtModel> models)
 		{
-			var request = new SqlRequest("Cars", "GetBrandsAndModels");
-			var result = _executor.Execute<T>(request);
-			return result;
+			var request = new SqlRequest(_queryChain, "Demo", "BulkAddModels");
+			request.Parameters.Add(new StoredProcedureTableTypeParameter("@Models", "table type", ParameterDirection.Input, "Demo", "udtModel", models));
+			return request;
 		}
 	}
 
-	[GeneratedCode("Flyingpie.Storm", "1.0.0.0")]
-	public partial class Utility : IUtility
+	public partial class IntegrationTest : IIntegrationTest
 	{
-		private ISqlExecutor _executor;
-		public Utility(ISqlExecutor executor)
+		private IQueryChain _queryChain;
+		public IntegrationTest(IQueryChain queryChain)
 		{
-			_executor = executor;
+			_queryChain = queryChain;
 		}
 
-		public virtual T GetAddition<T>(int? valueA, int? valueB) where T : SqlResponse
+		public virtual ISqlRequest QueryNoParameters()
 		{
-			var request = new SqlRequest("Utility", "GetAddition");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueA", "int", ParameterDirection.Input, valueA));
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@ValueB", "int", ParameterDirection.Input, valueB));
-			var result = _executor.Execute<T>(request);
-			return result;
+			var request = new SqlRequest(_queryChain, "IntegrationTest", "Query_NoParameters");
+			return request;
 		}
 
-		public virtual T EchoDateTime<T>(DateTime? dateTime) where T : SqlResponse
+		public virtual ISqlRequest NonQueryNoParameters()
 		{
-			var request = new SqlRequest("Utility", "EchoDateTime");
-			request.Parameters.Add(new StoredProcedureSimpleParameter("@DateTime", "datetime2", ParameterDirection.Input, dateTime));
-			var result = _executor.Execute<T>(request);
-			return result;
+			var request = new SqlRequest(_queryChain, "IntegrationTest", "NonQuery_NoParameters");
+			return request;
+		}
+
+		public virtual ISqlRequest ScalarNoParameters()
+		{
+			var request = new SqlRequest(_queryChain, "IntegrationTest", "Scalar_NoParameters");
+			return request;
+		}
+
+		public virtual ISqlRequest MultipleResultSetsNoParameters()
+		{
+			var request = new SqlRequest(_queryChain, "IntegrationTest", "MultipleResultSets_NoParameters");
+			return request;
 		}
 	}
 

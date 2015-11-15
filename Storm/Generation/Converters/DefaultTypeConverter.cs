@@ -26,12 +26,10 @@ namespace Flyingpie.Storm.Generation.Converters
                             break;
 
                         case System.Data.ParameterDirection.InputOutput:
-                            //typeName = "ref " + typeName;
                             typeName = "OutputParameter<" + typeName + ">";
                             break;
 
                         case System.Data.ParameterDirection.Output:
-                            //typeName = "out " + typeName;
                             typeName = "OutputParameter<" + typeName + ">";
                             break;
 

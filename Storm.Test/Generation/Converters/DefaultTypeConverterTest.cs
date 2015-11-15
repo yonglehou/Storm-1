@@ -1,13 +1,9 @@
-﻿using Flyingpie.Storm.Model;
-using Flyingpie.Storm.Converters;
+﻿using Flyingpie.Storm.Generation.Converters;
+using Flyingpie.Storm.Generation.Model;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
 
-namespace Flyingpie.Storm.Test.Converters
+namespace Flyingpie.Storm.Test.Generation.Converters
 {
     [TestClass]
     public class DefaultTypeConverterTest

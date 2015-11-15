@@ -6,8 +6,6 @@
     using System.CodeDom.Compiler;
     using System.Collections.Generic;
     using System.Data;
-    using System.Linq;
-    using Flyingpie.Storm;
     using Flyingpie.Storm.Execution;
     using Flyingpie.Storm.Execution.Parameters;
 
@@ -22,7 +20,7 @@
       namespace <xsl:value-of select="NamespaceName" />
       {
       <xsl:for-each select="UserDefinedTypes/UserDefinedTypeInfo">
-        [GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]
+        <!--[GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]-->
         public partial class <xsl:value-of select="NameClr" />
         {
         <xsl:for-each select="Columns/UserDefinedTypeColumnInfo">
@@ -40,7 +38,7 @@
     <!-- Interfaces -->
     #region Interfaces
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      [GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]
+      <!--[GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]-->
       public interface <xsl:value-of select="InterfaceName" />
       {
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
@@ -53,7 +51,7 @@
     #region Classes
     <!-- Classes -->
     <xsl:for-each select="DatabaseModel/Schemas/SchemaInfo">
-      [GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]
+      <!--[GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]-->
       public partial class <xsl:value-of select="ClassName" /> : <xsl:value-of select="InterfaceName" />
       {
       private IQueryChain _queryChain;

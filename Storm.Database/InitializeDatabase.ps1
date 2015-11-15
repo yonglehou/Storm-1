@@ -1,30 +1,40 @@
-﻿Write-Host "Hello!"
+﻿# Recreate database
+$sql = Get-Content ".\Scripts\1-Recreate.sql"
 
-$command = "
-USE master
-
-IF EXISTS(select * from sys.databases where name='Storm')
-BEGIN
-	ALTER DATABASE Storm SET OFFLINE WITH ROLLBACK IMMEDIATE;
-	ALTER DATABASE Storm SET ONLINE;
-
-	DROP DATABASE Storm;
-END
-
-CREATE DATABASE Storm";
-
-$connection = New-Object System.Data.SqlClient.SQLConnection("Data Source=.;Integrated Security=True;");
+$connection = New-Object System.Data.SqlClient.SQLConnection("server=.;integrated security=true;");
 $connection.Open();
 
-$command = New-Object System.Data.SqlClient.SqlCommand($command, $connection);
+$command = New-Object System.Data.SqlClient.SqlCommand($sql, $connection);
+$result = $command.ExecuteNonQuery()
 
-if ($command.ExecuteNonQuery() -ne -1)
+# Create structure
+$sql = Get-Content ".\Scripts\2-Structure.sql" -Encoding UTF8 -Raw
+$cmds = $sql -split "GO"
+
+foreach ($cmd in $cmds)
 {
-    throw "Failed to (re)create database";
+	$cmd = $cmd.Trim()
+
+	if ($cmd -ne "")
+	{
+		$command = New-Object System.Data.SqlClient.SqlCommand($cmd, $connection);
+		$result = $command.ExecuteNonQuery()
+	}
 }
-else
+
+# Data
+$sql = Get-Content ".\Scripts\3-Data.sql" -Encoding UTF8 -Raw
+$cmds = $sql -split "GO"
+
+foreach ($cmd in $cmds)
 {
-	Write-Host "Successfully (re)created database";
+	$cmd = $cmd.Trim()
+
+	if ($cmd -ne "")
+	{
+		$command = New-Object System.Data.SqlClient.SqlCommand($cmd, $connection);
+		$result = $command.ExecuteNonQuery()
+	}
 }
 
 $connection.Close();

@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Flyingpie.Storm.Generation;
+using System;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace Flyingpie.Storm.Cli
 {
-    class Program
+    internal class Program
     {
         public static void Main(string[] args)
         {

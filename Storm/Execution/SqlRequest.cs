@@ -37,6 +37,8 @@ namespace Flyingpie.Storm.Execution
         public void NonQuery()
         {
             var executor = QueryChain.CreateExecutor(this);
+
+            executor.NonQuery(this);
         }
 
         public T Scalar<T>()

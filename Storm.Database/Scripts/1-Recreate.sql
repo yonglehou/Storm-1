@@ -1,0 +1,9 @@
+﻿IF EXISTS(select * from sys.databases where name='Storm')
+BEGIN
+	ALTER DATABASE Storm SET OFFLINE WITH ROLLBACK IMMEDIATE;
+	ALTER DATABASE Storm SET ONLINE;
+
+	DROP DATABASE Storm;
+END
+
+CREATE DATABASE Storm
