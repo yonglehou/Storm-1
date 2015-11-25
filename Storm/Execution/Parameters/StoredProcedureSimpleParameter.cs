@@ -16,7 +16,17 @@ namespace Flyingpie.Storm.Execution.Parameters
 
         public override object GetValueAsObject()
         {
+            var outputParameter = Value as IOutputParameter;
+            if (outputParameter != null) return outputParameter.GetValueAsObject();
+
             return Value;
+        }
+
+        public override void SetValueAsObject(object value)
+        {
+            var outputParameter = Value as IOutputParameter;
+            if (outputParameter != null) outputParameter.SetValueAsObject(value);
+            else Value = value;
         }
 
         public override string ToString()

@@ -119,7 +119,10 @@ namespace Flyingpie.Storm.Dapper
 
                 if (simple != null)
                 {
-                    parameters.Add(simple.Name, simple.Value, direction: simple.Mode);
+                    var value = simple.GetValueAsObject();
+                    value = DefaultValueConverter.Convert(value, simple.TypeName);
+
+                    parameters.Add(simple.Name, value, direction: simple.Mode);
                     continue;
                 }
 
@@ -142,10 +145,14 @@ namespace Flyingpie.Storm.Dapper
         {
             request
                 .Parameters
-                .Select(p => p as StoredProcedureSimpleParameter) // We need simple parameters
-                .Where(p => p != null) // Non-simple parameters cannot be cast and shall be null
+                .OfType<StoredProcedureSimpleParameter>() // We need simple parameters
                 .ToList()
-                .ForEach(p => p.Value = parameters.Get<object>(p.Name)) // Retrieve the new parameter value from the executed stored proc
+                .ForEach(p =>
+                {
+                    // Retrieve the new parameter value from the executed stored proc
+                    var value = parameters.Get<object>(p.Name);
+                    p.SetValueAsObject(value);
+                })
             ;
         }
 

@@ -13,5 +13,7 @@ namespace Flyingpie.Storm.Execution.Parameters
         public string DirectionString { get; set; }
 
         public abstract object GetValueAsObject();
+
+        public abstract void SetValueAsObject(object value);
     }
 }

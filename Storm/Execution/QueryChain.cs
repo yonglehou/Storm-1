@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 
 namespace Flyingpie.Storm.Execution
 {
@@ -32,6 +33,11 @@ namespace Flyingpie.Storm.Execution
                 throw new InvalidOperationException("Cannot create executor, have you added an executor to the pipeline?");
 
             return mw(request);
+        }
+
+        public IDbTransaction BeginTransaction()
+        {
+            return CreateExecutor(null).BeginTransaction();
         }
     }
 }

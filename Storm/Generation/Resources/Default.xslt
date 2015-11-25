@@ -41,6 +41,8 @@
       <!--[GeneratedCode("<xsl:value-of select="/DatabaseModel/LibraryName" />", "<xsl:value-of select="/DatabaseModel/LibraryVersion" />")]-->
       public interface <xsl:value-of select="InterfaceName" />
       {
+        IDbTransaction BeginTransaction();
+
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">
         ISqlRequest <xsl:value-of select="NameClr" />(<xsl:value-of disable-output-escaping="yes" select="ParameterString" />);
       </xsl:for-each>
@@ -59,6 +61,11 @@
       public <xsl:value-of select="ClassName" />(IQueryChain queryChain)
       {
       _queryChain = queryChain;
+      }
+
+      public IDbTransaction BeginTransaction()
+      {
+        return _queryChain.BeginTransaction();
       }
 
       <xsl:for-each select="StoredProcedures/StoredProcedureInfo">

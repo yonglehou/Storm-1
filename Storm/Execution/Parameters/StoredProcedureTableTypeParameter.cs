@@ -26,6 +26,11 @@ namespace Flyingpie.Storm.Execution.Parameters
             return Table;
         }
 
+        public override void SetValueAsObject(object value)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public override string ToString()
         {
             return Name;
